@@ -20,7 +20,7 @@ class Node extends Component {
         }
         return (
             <li>
-                <a href="#" key={this.props.node.id}>
+                <a href={'#/' + this.props.node.link} key={this.props.node.id}>
                     {this.props.node.id}
                 </a>
             </li>

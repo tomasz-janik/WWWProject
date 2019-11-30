@@ -2,10 +2,13 @@
     background-color: #3C3E47;
     border: 2px solid #3C3E47;
     border-radius: 5px;
-    height: 100px;
+    min-height: 250px;
     width: 50%;
-    margin: 20px auto;
+    margin: 32px auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 8px;
 }

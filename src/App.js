@@ -8,7 +8,7 @@ import {
 import './App.css';
 import Header from './Components/Header/Header';
 
-import Home from "./Home";
+import Home from "./Components/Home/Home";
 import NoMatch from "./Components/NoMatch/NoMatch";
 
 class App extends Component {

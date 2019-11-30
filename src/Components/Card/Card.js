@@ -6,7 +6,9 @@ class Card extends Component {
     render() {
         return (
             <div className='card'>
-                {this.props.children}
+                <div className='clear'>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

@@ -12,3 +12,8 @@
     text-align: center;
     padding: 8px;
 }
+
+.clear{
+    display: block;
+    width: 100%;
+}

@@ -33,15 +33,15 @@ class List extends Component {
           submenu: [
             {
               id: 'Email',
-              link: 'email',
+              link: 'contact/email',
             },
             {
               id: 'Phone number',
-              link: 'phone_number',
+              link: 'contact/phone_number',
             },
             {
               id: 'Adress',
-              link: 'adress',
+              link: 'contact/adress',
             }
           ]
         },

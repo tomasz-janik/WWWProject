@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 
+import './NoMatch.css'
+
 class NoMatch extends Component {
     render() {
         return (
-            <div>404</div>
+            <div className='card'>
+                
+            </div>
         );
     }
 }

@@ -9,27 +9,38 @@ class Home extends Component {
         isLoading: false,
         index: 0,
         data: [],
-        hasMore: true
+        hasMore: true,
+        error: false,
+    }
+
+    constructor(props) {
+        super(props);
+        window.onscroll = () => {
+            if (this.state.error || this.state.isLoading || !this.state.hasMore) return;
+            
+            if (window.innerHeight + document.documentElement.scrollTop >= document.body.scrollHeight){
+                this.loadData()
+            }
+        };
     }
 
     componentDidMount() {
-        this.loadUsers();
-        setInterval(() => this.loadUsers(), 10000);
+        this.loadData();
     }
 
-    loadUsers = () => {
+    loadData = () => {
         this.setState({ isLoading: true }, () => {
             fetch('http://localhost:8081/data/' + this.state.index)
                 .then(response => response.json())
                 .then(response => {
-                    this.state.data.concat(response.data);                    
+                    this.state.data.concat(response.data);
                     this.setState(
-                    { 
-                        isLoading: false,
-                        index: this.state.index + 10,
-                        data: this.state.data.concat(response.data),
-                        hasMore: response.hasMore
-                    });
+                        {
+                            isLoading: false,
+                            index: this.state.index + 10,
+                            data: this.state.data.concat(response.data),
+                            hasMore: response.hasMore
+                        });
                     return response.data;
                 })
                 .catch(err => {
@@ -53,10 +64,14 @@ class Home extends Component {
                     </Card>
                 ))}
                 {this.state.isLoading &&
-                    <div>Loading...</div>
+                    <Card>
+                        Just one moment - loading more data
+                    </Card>
                 }
                 {!this.state.hasMore &&
-                    <div>You did it! You reached the end!</div>
+                    <Card>
+                        There is no more data - you've seen everything
+                    </Card>
                 }
             </div>
         );

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
 import './NoMatch.css'
+import Card from '../Card/Card'
 
 class NoMatch extends Component {
     render() {
         return (
-            <div className='card'>
-                
-            </div>
+            <Card>
+                lol
+            </Card>
         );
     }
 }

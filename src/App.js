@@ -7,7 +7,8 @@ import {
 
 import "./index.css";
 import './App.css';
-import List from './Components/List';
+import Header from './Components/Header/Header';
+
 import Home from "./Home";
 import NoMatch from "./NoMatch";
 
@@ -16,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <List className="navbar" list={this.list}></List>
+        <Header/>
 
         <Switch className="content">
           <Route exact path="/" component={Home} />
@@ -26,39 +27,6 @@ class App extends Component {
       </HashRouter>
     );
   }
-
-  list = [
-    {
-      id: 'Home',
-      link: '',
-    },
-    {
-      id: 'News',
-      link: 'news',
-    },
-    {
-      id: 'Contact',
-      link: 'contact',
-      submenu: [
-        {
-          id: 'Email',
-          link: 'email',
-        },
-        {
-          id: 'Phone number',
-          link: 'phone_number',
-        },
-        {
-          id: 'Adress',
-          link: 'adress',
-        }
-      ]
-    },
-    {
-      id: 'Help',
-      link: 'help',
-    },
-  ];
 }
 
 export default App;

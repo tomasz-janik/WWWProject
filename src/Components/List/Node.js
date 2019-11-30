@@ -13,7 +13,7 @@ class Node extends Component {
             });
             return (
                 <li className="dropdown" key={this.props.node.id}>
-                    <a className="dropbtn">{this.props.node.id}</a>
+                    <a href={'#/' + this.props.node.link} className="dropbtn">{this.props.node.id}</a>
                     <ul className="dropdown-content">{childnodes}</ul>
                 </li>
             );

@@ -4,6 +4,7 @@ import './Home.css'
 import Card from '../Card/Card'
 
 class Home extends Component {
+    _isMounted = false;
 
     state = {
         isLoading: false,
@@ -17,15 +18,20 @@ class Home extends Component {
         super(props);
         window.onscroll = () => {
             if (this.state.error || this.state.isLoading || !this.state.hasMore) return;
-            
-            if (window.innerHeight + document.documentElement.scrollTop >= document.body.scrollHeight){
+
+            if (window.innerHeight + document.documentElement.scrollTop >= document.body.scrollHeight) {
                 this.loadData()
             }
         };
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadData();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     loadData = () => {
@@ -33,15 +39,15 @@ class Home extends Component {
             fetch('http://localhost:8081/data/' + this.state.index)
                 .then(response => response.json())
                 .then(response => {
-                    this.state.data.concat(response.data);
-                    this.setState(
-                        {
-                            isLoading: false,
-                            index: this.state.index + 10,
-                            data: this.state.data.concat(response.data),
-                            hasMore: response.hasMore
-                        });
-                    return response.data;
+                    if (this._isMounted) {
+                        this.setState(
+                            {
+                                isLoading: false,
+                                index: this.state.index + 10,
+                                data: this.state.data.concat(response.data),
+                                hasMore: response.hasMore
+                            });
+                    }
                 })
                 .catch(err => {
                     console.log(err);

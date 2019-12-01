@@ -70,8 +70,15 @@ class Ranking extends Component {
                 })
             }
         )
-
     }
+
+    getHamburger = (key) => {
+        var pos = key === this.state.sortedByValue ? this.state.reversed ? 'reversed' : 'sorted' : 'default';
+        return (
+            <Hamburger position={pos}/>
+        )
+    }
+
 
     renderTableHeader() {
         if (this.state.data[0]) {
@@ -80,7 +87,7 @@ class Ranking extends Component {
                 return <th key={index} onClick={e => this.sortArray(key)}>
                     <div>
                         <span className='key'>{key.toUpperCase()}</span>
-                        <Hamburger/>
+                        {this.getHamburger(key)}
                     </div>
                 </th>
             })

@@ -2,13 +2,12 @@
 
 Dropdown menu - DONE<br />
 Infinite Scrolling - DONE<br />
-Table - DONE, EXCEPT SORTING ICON<br />
+Table - DONE<br />
 Paralax Scrolling - ? (can be done if we have free time because I wanna see how it works)<br />
 
 # TODO
 
 Make dropdown menu better<br />
-Implement Table Icon showing if sorting is ascending/descenging and by which column<br />
 Implement Paralx Scrolling - ?<br />
 Finish About - replace placeholders with text<br /><br /> 
 

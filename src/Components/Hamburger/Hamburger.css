@@ -2,7 +2,21 @@
     width: 20px;
     height: 2px;
     background-color: white;
-    margin: 4px 0;
+    margin: 4px auto;
+}
+
+.component_biggest{
+    width: 20px;
+}
+
+.component_middle{
+    width: 15px;
+    margin: 4px auto;
+}
+
+.component_smallest{
+    width: 10px;
+    margin: 4px auto;
 }
 
 .menu_icon{

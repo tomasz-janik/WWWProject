@@ -3,10 +3,17 @@ var app = express();
 var fs = require("fs");
 
 var file = [];
+var file2 = [];
 
 fs.readFile('data.json', function read(err, data) {
     if (!err) {
         file = JSON.parse(data)
+    }
+});
+
+fs.readFile('data2.json', function read(err, data) {
+    if (!err) {
+        file2 = JSON.parse(data)
     }
 });
 
@@ -26,6 +33,12 @@ app.get('/data/:index', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.send(JSON.stringify(response));
+})
+
+app.get('/data2', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.send(JSON.stringify(file2));
 })
 
 var server = app.listen(8081, function () {

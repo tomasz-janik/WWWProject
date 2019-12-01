@@ -2,13 +2,13 @@
 
 Dropdown menu - DONE<br />
 Infinite Scrolling - DONE<br />
-Table<br />
+Table - SORTING/FILTERING LEFT<br />
 Paralax Scrolling - ? (can be done if we have free time because I wanna see how it works)<br />
 
 # TODO
 
 Make dropdown menu better<br />
-Implement Table<br />
+Implement Table Sorting and Filtering<br />
 Implement Paralx Scrolling - ?<br />
 Finish About - replace placeholders with text<br /><br /> 
 

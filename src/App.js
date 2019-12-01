@@ -9,6 +9,7 @@ import './App.css';
 import Header from './Components/Header/Header';
 
 import Home from "./Components/Home/Home";
+import Ranking from "./Components/Ranking/Ranking";
 import About from "./Components/About/About";
 import Contact from "./Components/Contact/Contact";
 import ContactTemplate from './Components/Contact/ContactTemplate';
@@ -25,6 +26,7 @@ class App extends Component {
         <div className='content'>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/ranking" component={Ranking} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/contact/email" render={(props) => <ContactTemplate {...props} type='email' />} />

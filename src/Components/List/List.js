@@ -24,6 +24,10 @@ class List extends Component {
           link: '',
         },
         {
+          id: 'Ranking',
+          link: 'ranking',
+        },
+        {
           id: 'About',
           link: 'about',
         },

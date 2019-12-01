@@ -1,15 +1,23 @@
 # Progress
 
 Dropdown menu - DONE
+
 Infinite Scrolling - DONE
+
 Table
+
 Paralax Scrolling - ? (can be done if we have free time because I wanna see how it works)
 
 # TODO
+
 Make dropdown menu better
+
 Implement Table
+
 Implement Paralx Scrolling - ?
+
 Finish About - replace placeholders with text 
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

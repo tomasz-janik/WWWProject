@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import './Ranking.css'
 import Card from '../Card/Card'
+import Hamburger from "../Hamburger/Hamburger";
 
 class Ranking extends Component {
     _isMounted = false;
@@ -13,7 +14,9 @@ class Ranking extends Component {
         error: false,
         idFilterValue: "",
         nameFilterValue: "",
-        ratingFilterValue: ""
+        ratingFilterValue: "",
+        sortedByValue: "id",
+        reversed: false
     }
 
     componentDidMount() {
@@ -48,20 +51,47 @@ class Ranking extends Component {
             });
     }
 
+    sortArray = (key) => {
+        if (this.state.sortedByValue === key) {
+            this.setState(
+                {
+                    reversed: !this.state.reversed,
+                    displayedData: this.state.displayedData.reverse()
+                }
+            )
+            return;
+        }
+        this.setState(
+            {
+                sortedByValue: key,
+                reversed: false,
+                displayedData: this.state.displayedData.sort((a, b) => {
+                    return a[key] - b[key];
+                })
+            }
+        )
+
+    }
+
     renderTableHeader() {
         if (this.state.data[0]) {
             let header = Object.keys(this.state.data[0])
             return header.map((key, index) => {
-                return <th key={index}>{key.toUpperCase()}</th>
+                return <th key={index} onClick={e => this.sortArray(key)}>
+                    <div>
+                        <span className='key'>{key.toUpperCase()}</span>
+                        <Hamburger/>
+                    </div>
+                </th>
             })
         }
     }
 
     renderTableData() {
-        if (this.state.displayedData.length === 0){
+        if (this.state.displayedData.length === 0) {
             return (
                 <tr>
-                    <td colspan="3">
+                    <td colSpan="3">
                         None of avalible data matches your request!
                     </td>
                 </tr>
@@ -138,15 +168,15 @@ class Ranking extends Component {
             <Card>
                 <div className='table_border'>
                     <h1 className='table_name'>Ranking</h1>
-                        <table className='table'>
-                            <tbody>
-                                <tr>
-                                    {this.renderTableHeader()}
-                                </tr>
-                                {this.renderTableFilters()}
-                                {this.renderTableData()}
-                            </tbody>
-                        </table>
+                    <table className='table'>
+                        <tbody>
+                            <tr>
+                                {this.renderTableHeader()}
+                            </tr>
+                            {this.renderTableFilters()}
+                            {this.renderTableData()}
+                        </tbody>
+                    </table>
                 </div>
             </Card>
         );

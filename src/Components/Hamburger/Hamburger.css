@@ -1,0 +1,10 @@
+.component{
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+.menu_icon{
+    float: right;
+}

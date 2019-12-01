@@ -7,14 +7,11 @@ class NoMatch extends Component {
     render() {
         return (
             <Card>
-                <div style={{ display: 'block' }}>
-                    Unfortunatelly there is nothing here
-                    <br></br><br></br>
-                    Mayby you meant to enter different link?
-                    <br></br>
-                    Use the menu at the top of the website
-                </div>
-
+                Unfortunatelly there is nothing here
+                <br></br><br></br>
+                Mayby you meant to enter different link?
+                <br></br>
+                Use the menu at the top of the website
             </Card>
         );
     }

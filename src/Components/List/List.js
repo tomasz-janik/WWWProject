@@ -24,8 +24,8 @@ class List extends Component {
           link: '',
         },
         {
-          id: 'News',
-          link: 'news',
+          id: 'About',
+          link: 'about',
         },
         {
           id: 'Contact',

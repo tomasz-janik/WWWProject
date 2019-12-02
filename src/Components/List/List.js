@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router';
 import Node from './Node';
 import './List.css';
 
 class List extends Component {
 
     state = {
-      active: ''
+      active: this.props.location.pathname ? this.props.location.pathname : '/home'
     }
 
     changeState = (id) => {
@@ -31,39 +32,39 @@ class List extends Component {
     list = [
         {
           id: 'Home',
-          link: '',
+          link: '/',
         },
         {
           id: 'Ranking',
-          link: 'ranking',
+          link: '/ranking',
         },
         {
           id: 'About',
-          link: 'about',
+          link: '/about',
         },
         {
           id: 'Contact',
-          link: 'contact',
+          link: '/contact',
           submenu: [
             {
               id: 'Email',
-              link: 'contact/email',
+              link: '/contact/email',
             },
             {
               id: 'Phone number',
-              link: 'contact/phone_number',
+              link: '/contact/phone_number',
             },
             {
               id: 'Adress',
-              link: 'contact/adress',
+              link: '/contact/adress',
             }
           ]
         },
         {
           id: 'Help',
-          link: 'help',
+          link: '/help',
         },
       ];
 }
 
-export default List;
+export default withRouter(List);

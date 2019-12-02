@@ -7,7 +7,6 @@ class Node extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('a');
         if (prevProps.position !== this.props.position) {
             this.setState({
                 active: this.props.active
@@ -16,11 +15,11 @@ class Node extends Component {
     }
 
     handleClick = () => {
-        this.props.setState(this.props.node.id);
+        this.props.setState(this.props.node.link);
     }
 
     generateClassName = () => {
-        return this.props.active === this.props.node.id ? ' active' : '';
+        return this.props.active === this.props.node.link ? ' active' : '';
     }
 
     render() {
@@ -34,7 +33,7 @@ class Node extends Component {
             });
             return (
                 <li className={'dropdown' + this.generateClassName()} key={this.props.node.id}>
-                    <a href={'#/' + this.props.node.link} className="dropbtn" onClick={this.handleClick}>
+                    <a href={'#' + this.props.node.link} className="dropbtn" onClick={this.handleClick}>
                         {this.props.node.id}
                     </a>
                     <ul className="dropdown-content">{childnodes}</ul>
@@ -43,7 +42,7 @@ class Node extends Component {
         }
         return (
             <li className={this.generateClassName()}>
-                <a href={'#/' + this.props.node.link} key={this.props.node.id} onClick={this.handleClick}>
+                <a href={'#' + this.props.node.link} key={this.props.node.id} onClick={this.handleClick}>
                     {this.props.node.id}
                 </a>
             </li>

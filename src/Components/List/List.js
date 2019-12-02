@@ -4,10 +4,20 @@ import './List.css';
 
 class List extends Component {
 
+    state = {
+      active: ''
+    }
+
+    changeState = (id) => {
+      this.setState({
+        active: id
+      })
+    }
+
     render() {
-        let nodes = this.list.map(function (node, key) {
+        let nodes = this.list.map((node, key) => {
             return (
-                <Node node={node} children={node.submenu} key={key} />
+                <Node node={node} children={node.submenu} key={key} active={this.state.active} setState={this.changeState}/>
             );
         });
 

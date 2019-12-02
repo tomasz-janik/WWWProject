@@ -56,3 +56,7 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.active{
+    background-color: rgb(24, 26, 31);
+}

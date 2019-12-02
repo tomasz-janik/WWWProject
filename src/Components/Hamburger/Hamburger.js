@@ -14,7 +14,6 @@ class Hamburger extends Component {
                 position: this.props.position
             })
         }
-
     }
 
     getLowerClassName = () => {

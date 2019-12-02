@@ -2,25 +2,48 @@ import React, { Component } from "react";
 
 class Node extends Component {
 
+    state = {
+        active: this.props.active
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('a');
+        if (prevProps.position !== this.props.position) {
+            this.setState({
+                active: this.props.active
+            })
+        }
+    }
+
+    handleClick = () => {
+        this.props.setState(this.props.node.id);
+    }
+
+    generateClassName = () => {
+        return this.props.active === this.props.node.id ? ' active' : '';
+    }
+
     render() {
         let childnodes = null;
 
         if (this.props.children) {
-            childnodes = this.props.children.map(function (childnode, key) {
+            childnodes = this.props.children.map((childnode, key) => {
                 return (
-                    <Node node={childnode} children={childnode.submenu} key={key}/>
+                    <Node node={childnode} children={childnode.submenu} key={key} active={this.props.active} setState={this.props.setState}/>
                 );
             });
             return (
-                <li className="dropdown" key={this.props.node.id}>
-                    <a href={'#/' + this.props.node.link} className="dropbtn">{this.props.node.id}</a>
+                <li className={'dropdown' + this.generateClassName()} key={this.props.node.id}>
+                    <a href={'#/' + this.props.node.link} className="dropbtn" onClick={this.handleClick}>
+                        {this.props.node.id}
+                    </a>
                     <ul className="dropdown-content">{childnodes}</ul>
                 </li>
             );
         }
         return (
-            <li>
-                <a href={'#/' + this.props.node.link} key={this.props.node.id}>
+            <li className={this.generateClassName()}>
+                <a href={'#/' + this.props.node.link} key={this.props.node.id} onClick={this.handleClick}>
                     {this.props.node.id}
                 </a>
             </li>

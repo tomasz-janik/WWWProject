@@ -51,12 +51,15 @@ class Home extends Component {
                 })
                 .catch(err => {
                     console.log(err);
-                    this.setState(
-                        {
-                            isLoading: false,
-                            hasMore: false
-                        }
-                    )
+                    if (this._isMounted) {
+                        this.setState(
+                            {
+                                error: true,
+                                isLoading: false,
+                                hasMore: true
+                            }
+                        )
+                    }
                 });
         });
     }
@@ -69,6 +72,11 @@ class Home extends Component {
                         {entry.name}
                     </Card>
                 ))}
+                {this.state.error &&
+                    <Card>
+                        Couldn't get data - please try again later
+                    </Card>
+                }
                 {this.state.isLoading &&
                     <Card>
                         Just one moment - loading more data

@@ -43,11 +43,13 @@ class Ranking extends Component {
             })
             .catch(err => {
                 console.log(err);
-                this.setState(
-                    {
-                        isLoading: false,
-                    }
-                )
+                if (this._isMounted) {
+                    this.setState(
+                        {
+                            isLoading: false,
+                        }
+                    )
+                }
             });
     }
 
@@ -75,7 +77,7 @@ class Ranking extends Component {
     getHamburger = (key) => {
         var pos = key === this.state.sortedByValue ? this.state.reversed ? 'reversed' : 'sorted' : 'default';
         return (
-            <Hamburger position={pos}/>
+            <Hamburger position={pos} />
         )
     }
 

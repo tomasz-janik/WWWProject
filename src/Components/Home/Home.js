@@ -14,24 +14,23 @@ class Home extends Component {
         error: false,
     }
 
-    constructor(props) {
-        super(props);
-        window.onscroll = () => {
-            if (this.state.error || this.state.isLoading || !this.state.hasMore) return;
-
-            if (window.innerHeight + document.documentElement.scrollTop >= document.body.scrollHeight) {
-                this.loadData()
-            }
-        };
-    }
-
     componentDidMount() {
+        window.addEventListener('scroll', this.scrollFunction)
         this._isMounted = true;
         this.loadData();
     }
 
     componentWillUnmount() {
+        window.removeEventListener('scroll', this.scrollFunction)
         this._isMounted = false;
+    }
+
+    scrollFunction = () => {
+        if (this.state.error || this.state.isLoading || !this.state.hasMore) return;
+
+        if (window.innerHeight + document.documentElement.scrollTop >= document.body.scrollHeight) {
+            this.loadData()
+        }
     }
 
     loadData = () => {

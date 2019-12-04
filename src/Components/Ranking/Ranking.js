@@ -133,42 +133,42 @@ class Ranking extends Component {
         )
     }
 
-    handleIdFilterChange = (event) => {
+    filterData = () => {
         this.setState(
             {
-                idFilterValue: event.target.value,
                 displayedData: this.state.data.filter((entry) => {
-                    return (entry.id + '').includes(event.target.value)
+                    return (entry.id + '').includes(this.state.idFilterValue)
                         && entry.name.includes(this.state.nameFilterValue)
                         && entry.rating.includes(this.state.ratingFilterValue);
                 })
             }
+        );
+    }
+
+    handleIdFilterChange = (event) => {
+        this.setState(
+            {
+                idFilterValue: event.target.value
+            },
+            this.filterData
         );
     }
 
     handleNameFilterChange = (event) => {
         this.setState(
             {
-                nameFilterValue: event.target.value,
-                displayedData: this.state.data.filter((entry) => {
-                    return (entry.id + '').includes(this.state.idFilterValue)
-                        && entry.name.includes(event.target.value)
-                        && entry.rating.includes(this.state.ratingFilterValue);
-                })
-            }
+                nameFilterValue: event.target.value
+            },
+            this.filterData
         );
     }
 
     handleRatingFilterChange = (event) => {
         this.setState(
             {
-                ratingFilterValue: event.target.value,
-                displayedData: this.state.data.filter((entry) => {
-                    return (entry.id + '').includes(this.state.idFilterValue)
-                        && entry.name.includes(this.state.nameFilterValue)
-                        && entry.rating.includes(event.target.value);
-                })
-            }
+                ratingFilterValue: event.target.value
+            },
+            this.filterData
         );
     }
 

@@ -5,33 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Server.API.v1;
 using Server.Domain;
+using Server.Services;
 
 namespace Server.Controllers.v1
 {
     public class PostController : Controller
     {
-        private  readonly  List<Post> _posts;
-     
-
-        public PostController()
+        private readonly IPostService _postService;
+        public PostController(IPostService postService)
         {
-            _posts = new List<Post>();
-            for (var i = 0; i < 100; i++)
-            {
-                _posts.Add(new Post(){Id = Guid.NewGuid(), Name = $"TwojSmiesznyKot{i}"});
-            }
+            _postService = postService;
         }
-
         [HttpGet(ApiRoutes.Posts.GetPosts)]
         public IActionResult GetPosts()
         {
-            return Ok(_posts);
+            return Ok(_postService.GetPosts());
         }
 
         [HttpGet(ApiRoutes.Posts.Post)]
         public IActionResult GetPost([FromRoute]int postId)
         {
-            return Ok(_posts.Skip(postId * 10).Take(10).ToList());
+            return Ok(_postService.GetPostInRange(postId*10,postId*10+10));
         }
     }
 }

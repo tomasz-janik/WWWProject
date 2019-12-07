@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Server.Services;
 
 namespace Server.Installers.Services
 {
@@ -13,6 +14,8 @@ namespace Server.Installers.Services
 
             //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSingleton<IPostService, PostService>();
         }
     }
 }

@@ -12,7 +12,6 @@ namespace Server.Controllers.v1
     {
         private  readonly  List<Post> _posts;
      
-
         public PostController()
         {
             _posts = new List<Post>();

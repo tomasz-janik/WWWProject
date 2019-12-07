@@ -30,7 +30,7 @@ class List extends Component {
     if (this.state.logged){
       this.list = this.list.filter(entry => entry.id !== 'Login');
     }
-    if (this.state.admin){
+    if (!this.state.admin){
       this.list = this.list.filter(entry => entry.id !== 'Admin');
     }
 

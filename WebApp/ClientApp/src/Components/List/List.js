@@ -7,13 +7,15 @@ class List extends Component {
 
   state = {
     active: this.props.location.pathname ? this.props.location.pathname : '/home',
-    logged: this.props.logged
+    logged: this.props.logged,
+    admin: this.props.admin,
   }
 
   componentDidUpdate(prevProps, prevState){
-    if (prevProps.logged !== this.props.logged){
+    if ((prevProps.logged !== this.props.logged) || (prevProps.admin !== this.props.admin)){
         this.setState({
-          logged: this.props.logged
+          logged: this.props.logged,
+          admin: this.props.admin,
         })
     }
 }
@@ -28,6 +30,10 @@ class List extends Component {
     if (this.state.logged){
       this.list = this.list.filter(entry => entry.id !== 'Login');
     }
+    if (this.state.admin){
+      this.list = this.list.filter(entry => entry.id !== 'Admin');
+    }
+
     let nodes = this.list.map((node, key) => {
       return (
         <Node node={node} children={node.submenu} key={key} active={this.state.active} setState={this.changeState} />
@@ -75,6 +81,10 @@ class List extends Component {
     {
       id: 'Login',
       link: '/login',
+    },
+    {
+      id: 'Admin',
+      link: '/admin',
     },
   ];
 }

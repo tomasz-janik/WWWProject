@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <Header logged={authenticate.isAuthenticated}/>
+        <Header logged={authenticate.isAuthenticated} admin={authenticate.isAdmin}/>
 
         <div className='content'>
           <Switch>

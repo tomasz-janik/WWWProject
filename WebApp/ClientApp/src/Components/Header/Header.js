@@ -7,7 +7,7 @@ class Header extends Component {
     render() {
         return (
             <div className='header'>
-                <List logged={this.props.logged}/>
+                <List logged={this.props.logged} admin={this.props.admin}/>
                 <div className='flexbox-container'>
                     <img className='logo' src='./logo.png' alt='logo' />
                 </div>

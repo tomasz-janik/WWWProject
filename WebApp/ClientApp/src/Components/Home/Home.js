@@ -35,15 +35,17 @@ class Home extends Component {
 
     loadData = () => {
         this.setState({ isLoading: true }, () => {
-            fetch('http://localhost:8081/data/' + this.state.index)
+        
+            fetch('https://localhost:5001/api/v1/post/' + this.state.index)
                 .then(response => response.json())
                 .then(response => {
                     if (this._isMounted) {
+                        console.log(response);
                         this.setState(
                             {
                                 isLoading: false,
                                 index: this.state.index + 10,
-                                data: this.state.data.concat(response.data),
+                                data: this.state.data.concat(response),
                                 hasMore: response.hasMore
                             });
                     }
@@ -68,7 +70,7 @@ class Home extends Component {
             <div>
                 {this.state.data.map((entry, key) => (
                     <Card key={key}>
-                        {entry.name}
+            {entry.name}
                     </Card>
                 ))}
                 {this.state.error &&

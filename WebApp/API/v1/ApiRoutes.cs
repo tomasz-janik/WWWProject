@@ -9,7 +9,8 @@ namespace Server.API.v1
 
         public static class Posts
         {
-            public const string GetPosts = BaseRoot + "/getPosts";
+            public const string GetPosts = BaseRoot + "/posts";
+            public const string Post = BaseRoot + "/post/{postId}";
         }
     }
 }

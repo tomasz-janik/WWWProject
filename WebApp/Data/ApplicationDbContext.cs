@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Server.Domain;
 
 namespace Server.Data
 {
@@ -12,5 +13,8 @@ namespace Server.Data
             : base(options)
         {
         }
+
+        public  DbSet<Post> Posts { set; get; }
+
     }
 }

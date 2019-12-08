@@ -2,42 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Server.Data;
 using Server.Domain;
 
 namespace Server.Services
 {
     public class PostService : IPostService
     {
-        private readonly List<Post> _posts;
+        private readonly ApplicationDbContext _applicationDb;
 
 
-        public PostService()
+        public PostService(ApplicationDbContext applicationDb)
         {
-            _posts = new List<Post>();
-            for (var i = 0; i < 100; i++)
-            {
-                _posts.Add(new Post() { Id = Guid.NewGuid(), Name = $"TwojSmiesznyKot{i}" });
-            }
+            _applicationDb = applicationDb;
         }
 
-        public List<Post> GetPosts()
+
+        public async Task<List<Post>> GetPosts()
         {
-            return _posts;
+            return await _applicationDb.Posts
+                .ToListAsync();
         }
 
-        public Post GetPostById(int id)
+        public async Task<List<Post>> GetRange(int start, int count)
         {
-            return _posts[id];
+            return await _applicationDb.Posts
+                .OrderByDescending(post=>post.Created)
+                .Skip(start)
+                .Take(count)
+                .ToListAsync();
         }
 
-        public void AddPost(Post newPost)
+
+        public async Task<Post> GetByGuid(Guid id)
         {
-         _posts.Add(newPost);
+            return await _applicationDb.Posts
+                .SingleOrDefaultAsync(post => post.Id == id);
         }
 
-        public List<Post> GetPostInRange(int start, int end)
+        public async Task<bool> AddPost(Post post)
         {
-            return _posts.Skip(start).Take(end - start).ToList();
+            await _applicationDb.Posts.AddAsync(post);
+            var created = await _applicationDb.SaveChangesAsync();
+            return created > 0;
         }
     }
 }

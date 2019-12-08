@@ -8,9 +8,9 @@ namespace Server.Services
 {
     public interface IPostService
     {
-        List<Post> GetPosts();
-        Post GetPostById(int id);
-        void AddPost(Post newPost);
-        List<Post> GetPostInRange(int start, int end);
+        Task<List<Post>> GetPosts();
+        Task<List<Post>> GetRange(int start, int count);
+        Task<Post> GetByGuid(Guid id);
+        Task<bool> AddPost(Post post);
     }
 }

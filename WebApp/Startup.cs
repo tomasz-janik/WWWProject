@@ -75,8 +75,10 @@ namespace Server
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
-                {
+                { 
                     spa.UseReactDevelopmentServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("https://localhost:5001");
+
                 }
             });
         }

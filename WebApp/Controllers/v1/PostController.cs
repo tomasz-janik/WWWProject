@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Server.API.v1;
 using Server.API.v1.Requests;
@@ -30,6 +31,17 @@ namespace Server.Controllers.v1
             var post = await _postService.GetByGuid(postId);
 
             if (post == null)
+                return NotFound();
+
+            return Ok(post);
+        }
+
+        [HttpGet(ApiRoutes.Posts.GetRange)]
+        public async Task<IActionResult> GetPost([FromRoute]int start, int count = 10)
+        {
+            var post = await _postService.GetRange(start,count);
+
+            if (post.IsNullOrEmpty())
                 return NotFound();
 
             return Ok(post);

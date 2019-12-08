@@ -36,7 +36,7 @@ class Home extends Component {
     loadData = () => {
         this.setState({ isLoading: true }, () => {
         
-            fetch('https://localhost:5001/api/v1/post/' + this.state.index)
+            fetch('https://localhost:5001/api/v1/posts/' + this.state.index)
                 .then(response => response.json())
                 .then(response => {
                     if (this._isMounted) {

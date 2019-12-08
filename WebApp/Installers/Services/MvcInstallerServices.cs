@@ -13,6 +13,7 @@ namespace Server.Installers.Services
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
         }
     }
 }

@@ -10,6 +10,8 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import NoMatch from "./Components/NoMatch/NoMatch";
 import Ranking from "./Components/Ranking/Ranking";
+import Admin from "./Components/Admin/Admin";
+
 
 class App extends Component {
 
@@ -28,7 +30,7 @@ class App extends Component {
             <Route exact path='/contact/phone_number' render={(props) => <ContactTemplate {...props} type='phoneNumber' />} />
             <Route exact path='/contact/adress' component={ContactAdress} />
             <LoginRoute exact path='/login' component={Login} />
-            <AdminRoute exact path='/admin' component={Home} />
+            <AdminRoute exact path='/admin' component={Admin} />
             <Route component={NoMatch} />
           </Switch>
         </div>
@@ -39,7 +41,7 @@ class App extends Component {
 
 const authenticate = {
   isAuthenticated: false,
-  isAdmin: false,
+  isAdmin: true,
 
   authenticate() {
     this.isAuthenticated = true

@@ -37,8 +37,6 @@ class Admin extends Component {
     }
 
     handleSubmit = (desc) => {
-        console.log(desc)
-        console.log(this.state.files)
         fetch('https://localhost:5001/api/v1/add', {
             method: 'POST',
             headers: {

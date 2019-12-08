@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IdentityServer4.Extensions;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Server.API.v1;
 using Server.API.v1.Requests;
@@ -12,6 +13,7 @@ using Server.Services;
 
 namespace Server.Controllers.v1
 {
+    [EnableCors("CorsPolicy")]
     public class PostController : Controller
     {
         private readonly IPostService _postService;

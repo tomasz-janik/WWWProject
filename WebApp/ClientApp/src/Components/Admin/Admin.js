@@ -7,10 +7,21 @@ import Form from '../AddPost/Form/Form'
 
 class Admin extends Component {
 
+    _isMounted = false;
+
     state = {
         files: [],
         description: "",
     }
+
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
 
     handleDrop = (files) => {
         let fileList = this.state.files
@@ -25,14 +36,28 @@ class Admin extends Component {
         )
     }
 
-    handleDescriptionChange = (event) => {
-        this.setState({
-            description: event.target.value,
+    handleSubmit = (desc) => {
+        console.log(desc)
+        console.log(this.state.files)
+        fetch('https://localhost:5001/api/v1/add', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({description: desc, files: this.state.files})
         })
-    }
-
-    handleSubmit = (description) => {
-        console.log(description)
+            .then(response => response.json())
+            .then(response => {
+                if (this._isMounted) {
+                    window.alert('Added post sucessfully');
+                }
+            })
+            .catch(err => {
+                if (this._isMounted){
+                    window.alert('Failed to add post');
+                }
+            });
     }
 
     render() {
@@ -48,7 +73,7 @@ class Admin extends Component {
                         )}
                     </div>
                 </DragAndDrop>
-                <Form handleSubmit={this.handleSubmit}/>
+                <Form handleSubmit={this.handleSubmit} />
             </Card>
         );
     }

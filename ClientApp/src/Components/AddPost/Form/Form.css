@@ -1,0 +1,28 @@
+.input_description_field {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 4px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.label_description{
+    text-align: left;
+    float: left;
+    padding: 16px 0 0 10%;
+}
+
+.submit_button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 32px 0 16px 0;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+}
+
+.submit_button:hover {
+    opacity: 0.8;
+}

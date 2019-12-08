@@ -1,0 +1,28 @@
+.input_field {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 4px 20%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.label_login{
+    text-align: left;
+    float: left;
+    padding: 16px 0 0 20%;
+}
+
+.login_button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 32px 0 16px 0;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+}
+
+.login_button:hover {
+    opacity: 0.8;
+}

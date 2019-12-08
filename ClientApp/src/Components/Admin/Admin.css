@@ -1,0 +1,15 @@
+.drag_and_drop{
+    width: 80%;
+    margin: auto;
+    margin-top: 16px;
+    min-height: 250px;
+    border: dashed 2px lightslategray;
+    background-color: rgba(1,1,1,0.1);
+}
+
+.placeholder{
+    min-height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}

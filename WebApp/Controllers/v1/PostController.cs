@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Server.API.v1;
+using Server.API.v1.Requests;
+using Server.API.v1.Responses;
 using Server.Domain;
 using Server.Services;
 
@@ -16,16 +18,40 @@ namespace Server.Controllers.v1
         {
             _postService = postService;
         }
-        [HttpGet(ApiRoutes.Posts.GetPosts)]
-        public IActionResult GetPosts()
+        [HttpGet(ApiRoutes.Posts.Get)]
+        public async  Task<IActionResult> GetPosts()
         {
-            return Ok(_postService.GetPosts());
+            return Ok(await _postService.GetPosts());
         }
 
-        [HttpGet(ApiRoutes.Posts.Post)]
-        public IActionResult GetPost([FromRoute]int postId)
+        [HttpGet(ApiRoutes.Posts.GetOne)]
+        public async  Task<IActionResult> GetPost([FromRoute]Guid postId)
         {
-            return Ok();
+            var post = await _postService.GetByGuid(postId);
+
+            if (post == null)
+                return NotFound();
+
+            return Ok(post);
+        }
+
+        [HttpPost(ApiRoutes.Posts.Create)]
+        public async Task<IActionResult> CreatePost([FromBody]CreatePostRequest postRequest)
+        {
+            var post = new Post
+            {
+                Description = postRequest.Description,
+                Name = postRequest.Name,
+                Created = DateTime.Now
+            };
+
+           await _postService.AddPost(post);
+
+           var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
+           var locationUrl = $"{baseUrl}/{ApiRoutes.Posts.GetOne.Replace("{postId}", post.Id.ToString())}";
+
+           return Created(locationUrl, new CreatePostResponse{Id = post.Id});
+
         }
     }
 }

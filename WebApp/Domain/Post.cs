@@ -12,6 +12,7 @@ namespace Server.Domain
         [Key]
         public Guid Id { set; get; }
         public string Name { set; get; }
+        public string Description { set; get; }
         public DateTime Created { set; get; }
     }
 }

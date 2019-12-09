@@ -48,6 +48,24 @@ class List extends Component {
     {
       id: 'About',
       link: '/about',
+      submenu: [
+        {
+          id: 'Overview',
+          link: '/contact/overview',
+        },
+        {
+          id: 'Dropdown menu',
+          link: '/contact/dropdown_menu',
+        },
+        {
+          id: 'Infinite Scrolling',
+          link: '/contact/infinite_scrolling',
+        },
+        {
+          id: 'Table',
+          link: '/contact/table',
+        }
+      ]
     },
     {
       id: 'Contact',

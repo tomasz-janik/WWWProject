@@ -18,6 +18,7 @@ class DragAndDrop extends Component {
         if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
             this.props.updateUploadLength(e.dataTransfer.items.length)
             if (e.dataTransfer.items.length === 1) {
+                this.props.updateUploadType(e.dataTransfer.items[0].type)
                 this.setState({
                     dragging: true
                 })
@@ -32,7 +33,8 @@ class DragAndDrop extends Component {
         if (this.dragCounter > 0) {
             return
         }
-        this.props.updateUploadLength(e.dataTransfer.items.length)
+        this.props.updateUploadLength(0)
+        this.props.updateUploadType("")
         this.setState(
             {
                 dragging: false
@@ -48,7 +50,7 @@ class DragAndDrop extends Component {
                 dragging: false
             }
         )
-        if (e.dataTransfer.files && e.dataTransfer.files.length === 1) {
+        if (e.dataTransfer.files && e.dataTransfer.files.length === 1 && e.dataTransfer.files[0].type.includes('image')) {
             this.props.handleDrop(e.dataTransfer.files)
             e.dataTransfer.clearData()
             this.dragCounter = 0

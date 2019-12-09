@@ -18,13 +18,14 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <Header logged={authenticate.isAuthenticated} admin={authenticate.isAdmin}/>
+        <Header logged={authenticate.isAuthenticated} admin={authenticate.isAdmin} />
 
         <div className='content'>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/ranking' component={Ranking} />
             <Route exact path='/about' component={About} />
+            <Route exact path='/about/overview' component={About} />
             <Route exact path='/contact' component={Contact} />
             <Route exact path='/contact/email' render={(props) => <ContactTemplate {...props} type='email' />} />
             <Route exact path='/contact/phone_number' render={(props) => <ContactTemplate {...props} type='phoneNumber' />} />
@@ -55,7 +56,7 @@ const authenticate = {
 }
 
 const LoginRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
+  <Route {...rest} render={props => (
     !authenticate.isAuthenticated ?
       <Component {...props} /> :
       <Redirect to='/' />
@@ -63,7 +64,7 @@ const LoginRoute = ({ component: Component, ...rest }) => (
 )
 
 const AdminRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
+  <Route {...rest} render={props => (
     authenticate.isAdmin ?
       <Component {...props} /> :
       <Redirect to='/' />

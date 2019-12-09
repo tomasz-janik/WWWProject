@@ -13,6 +13,7 @@ class Admin extends Component {
         files: [],
         description: "",
         uploadLength: 1,
+        uploadType: "",
     }
 
     componentDidMount() {
@@ -76,21 +77,41 @@ class Admin extends Component {
         })
     }
 
+    updateUploadType = (type) => {
+        this.setState({
+            uploadType: type
+        })
+    }
+
+    getPlaceholder = () => {
+        if (this.state.files.length === 0) {
+            if (this.state.uploadLength > 1) {
+                return "Can't Upload So Many Files";
+            }
+            if (this.state.uploadType !== "" && !this.state.uploadType.includes('image')) {
+                return "Invalid file type";
+            }
+            return "Drop File Here";
+        }
+    }
+
     render() {
         return (
             <Card>
-                <DragAndDrop handleDrop={this.handleDrop} updateUploadLength={this.updateUploadLength}>
+                <DragAndDrop handleDrop={this.handleDrop} updateUploadLength={this.updateUploadLength}
+                    updateUploadType={this.updateUploadType}>
                     <div className='drag_and_drop'>
-                        {this.state.files.length === 0 && (this.state.uploadLength > 1 ?
-                            <div className='placeholder'>Can't Upload So Many Files</div> :
-                            <div className='placeholder'>Drop File Here</div>
-                        )
+                        {this.state.files.length === 0 &&
+                            <div className='placeholder'>
+                                {this.getPlaceholder()}
+                            </div>
                         }
+
                         {this.state.files.length !== 0 &&
-                            <img src={this.state.imagePreviewUrl} alt="icon" width="200" />
+                            <img className='uploaded_image' src={this.state.imagePreviewUrl} alt="icon" width="200" />
                         }
                         {this.state.files.flatMap((file, key) =>
-                            <div key={key}>{file.name}</div>
+                            <div className='uploaded_image_name' key={key}>{file.name}</div>
                         )}
                     </div>
                 </DragAndDrop>

@@ -3,7 +3,7 @@ class DragAndDrop extends Component {
 
     dropRef = React.createRef()
     state = {
-        dragging: false
+        dragging: false,
     }
 
     handleDrag = (e) => {
@@ -16,11 +16,12 @@ class DragAndDrop extends Component {
         e.stopPropagation()
         this.dragCounter++
         if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
-            this.setState(
-                {
+            this.props.updateUploadLength(e.dataTransfer.items.length)
+            if (e.dataTransfer.items.length === 1) {
+                this.setState({
                     dragging: true
-                }
-            )
+                })
+            }
         }
     }
 
@@ -31,6 +32,7 @@ class DragAndDrop extends Component {
         if (this.dragCounter > 0) {
             return
         }
+        this.props.updateUploadLength(e.dataTransfer.items.length)
         this.setState(
             {
                 dragging: false
@@ -46,7 +48,7 @@ class DragAndDrop extends Component {
                 dragging: false
             }
         )
-        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        if (e.dataTransfer.files && e.dataTransfer.files.length === 1) {
             this.props.handleDrop(e.dataTransfer.files)
             e.dataTransfer.clearData()
             this.dragCounter = 0
@@ -77,7 +79,7 @@ class DragAndDrop extends Component {
             <div ref={this.dropRef} >
                 {this.state.dragging &&
                     <div className='dragging_container'>
-                        <div className='dragging_overlay'/>
+                        <div className='dragging_overlay' />
                     </div>
                 }
                 {this.props.children}

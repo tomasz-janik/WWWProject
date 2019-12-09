@@ -7,30 +7,19 @@ class List extends Component {
 
   state = {
     active: this.props.location.pathname ? this.props.location.pathname : '/home',
-    logged: this.props.logged,
-    admin: this.props.admin,
   }
-
-  componentDidUpdate(prevProps, prevState){
-    if ((prevProps.logged !== this.props.logged) || (prevProps.admin !== this.props.admin)){
-        this.setState({
-          logged: this.props.logged,
-          admin: this.props.admin,
-        })
-    }
-}
 
   changeState = (id) => {
     this.setState({
-      active: id
+      active: id,
     })
   }
 
   render() {
-    if (this.state.logged){
+    if (this.props.logged) {
       this.list = this.list.filter(entry => entry.id !== 'Login');
     }
-    if (!this.state.admin){
+    if (!this.props.admin) {
       this.list = this.list.filter(entry => entry.id !== 'Admin');
     }
 

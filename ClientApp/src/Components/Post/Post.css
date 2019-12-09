@@ -1,0 +1,34 @@
+.plus_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+ 
+.plus_button:hover {
+    opacity: 0.8;
+}
+ 
+.rating{
+    display: inline-block;
+}
+ 
+.rating_child{
+    float: left;
+}
+ 
+.overall_rating{
+    margin-left: 8px;
+    height: 25px;
+    display: flex;
+}
+ 
+.content{
+    justify-content: center
+}
+ 
+.post_name{
+    font-size: 28px;
+}

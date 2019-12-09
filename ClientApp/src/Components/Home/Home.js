@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import './Home.css'
 import Card from '../Card/Card'
+import Post from "../Post/Post";
 
 class Home extends Component {
     _isMounted = false;
@@ -35,7 +36,6 @@ class Home extends Component {
 
     loadData = () => {
         this.setState({ isLoading: true }, () => {
-        
             fetch('https://localhost:5001/api/v1/posts/' + this.state.index)
                 .then(response => response.json())
                 .then(response => {
@@ -69,9 +69,7 @@ class Home extends Component {
         return (
             <div>
                 {this.state.data.map((entry, key) => (
-                    <Card key={key}>
-            {entry.name}
-                    </Card>
+                    <Post key={key} data={entry} />
                 ))}
                 {this.state.error &&
                     <Card>

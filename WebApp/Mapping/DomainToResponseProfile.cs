@@ -13,6 +13,8 @@ namespace Server.Mapping
         public DomainToResponseProfile()
         {
             CreateMap<Post, PostResponse>();
+            CreateMap<Post, CreatePostResponse>();
+            
         }
     }
 }

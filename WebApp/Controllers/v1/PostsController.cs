@@ -17,12 +17,12 @@ using Server.Services;
 namespace Server.Controllers.v1
 {
     [EnableCors("CorsPolicy")]
-    public class PostController : Controller
+    public class PostsController : Controller
     {
         private readonly IPostService _postService;
         private readonly IMapper _mapper;
         public readonly IUriService _uriService;
-        public PostController(IPostService postService, IMapper mapper, IUriService uriService)
+        public PostsController(IPostService postService, IMapper mapper, IUriService uriService)
         {
             _postService = postService;
             _mapper = mapper;
@@ -54,7 +54,7 @@ namespace Server.Controllers.v1
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<PostResponse>(post));
+            return Ok(new DataResponse<PostResponse>(_mapper.Map<PostResponse>(post)));
         }
 
         [HttpPost(ApiRoutes.Posts.Create)]
@@ -69,10 +69,9 @@ namespace Server.Controllers.v1
 
            await _postService.AddPost(post);
 
-           var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-           var locationUrl = $"{baseUrl}/{ApiRoutes.Posts.GetOne.Replace("{postId}", post.Id.ToString())}";
+           var locationUrl = _uriService.GetPostUri(post.Id.ToString());
 
-           return Created(locationUrl, new CreatePostResponse{Id = post.Id});
+           return Created(locationUrl, new DataResponse<CreatePostResponse>(_mapper.Map<CreatePostResponse>(post)));
 
         }
     }

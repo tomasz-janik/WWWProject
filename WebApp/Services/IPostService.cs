@@ -8,8 +8,7 @@ namespace Server.Services
 {
     public interface IPostService
     {
-        Task<List<Post>> GetPosts();
-        Task<List<Post>> GetRange(int start, int count);
+        Task<List<Post>> GetPosts(PaginationFilter paginationFilter = null);
         Task<Post> GetByGuid(Guid id);
         Task<bool> AddPost(Post post);
     }

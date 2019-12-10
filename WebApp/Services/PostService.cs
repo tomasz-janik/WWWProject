@@ -19,21 +19,19 @@ namespace Server.Services
         }
 
 
-        public async Task<List<Post>> GetPosts()
+        public async Task<List<Post>> GetPosts(PaginationFilter paginationFilter = null)
         {
-            return await _applicationDb.Posts
+            if (paginationFilter == null)
+            {
+                return await _applicationDb.Posts
+                    .ToListAsync();
+            }
+
+            return await  _applicationDb.Posts.OrderByDescending(post => post.Created)
+                .Skip(paginationFilter.PageSize*paginationFilter.PageNumber)
+                .Take(paginationFilter.PageSize)
                 .ToListAsync();
         }
-
-        public async Task<List<Post>> GetRange(int start, int count)
-        {
-            return await _applicationDb.Posts
-                .OrderByDescending(post=>post.Created)
-                .Skip(start)
-                .Take(count)
-                .ToListAsync();
-        }
-
 
         public async Task<Post> GetByGuid(Guid id)
         {

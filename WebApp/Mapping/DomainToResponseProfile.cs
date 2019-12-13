@@ -14,7 +14,10 @@ namespace Server.Mapping
         {
             CreateMap<Post, PostResponse>();
             CreateMap<Post, CreatePostResponse>();
-            
+
+            CreateMap<AuthenticationResult, AuthFailedResponse>();
+            CreateMap<AuthenticationResult, AuthSuccessResponse>();
+
         }
     }
 }

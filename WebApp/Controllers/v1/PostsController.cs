@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using IdentityServer4.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Server.API.v1;
@@ -11,6 +13,7 @@ using Server.API.v1.Requests;
 using Server.API.v1.Requests.Queries;
 using Server.API.v1.Responses;
 using Server.Domain;
+using Server.Extensions;
 using Server.Helpers;
 using Server.Services;
 
@@ -21,7 +24,8 @@ namespace Server.Controllers.v1
     {
         private readonly IPostService _postService;
         private readonly IMapper _mapper;
-        public readonly IUriService _uriService;
+        private readonly IUriService _uriService;
+
         public PostsController(IPostService postService, IMapper mapper, IUriService uriService)
         {
             _postService = postService;
@@ -58,13 +62,15 @@ namespace Server.Controllers.v1
         }
 
         [HttpPost(ApiRoutes.Posts.Create)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> CreatePost([FromBody]CreatePostRequest postRequest)
         {
             var post = new Post
             {
                 Description = postRequest.Description,
                 Name = postRequest.Name,
-                Created = DateTime.Now
+                Created = DateTime.Now,
+                UserId = HttpContext.GetUserId()
             };
 
            await _postService.AddPost(post);

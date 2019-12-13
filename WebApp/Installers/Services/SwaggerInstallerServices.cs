@@ -14,9 +14,28 @@ namespace Server.Installers.Services
     {
         public void Install(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddSwaggerGen(obj =>
+            services.AddSwaggerGen(swagger =>
             {
-                obj.SwaggerDoc("v1", new OpenApiInfo { Title = "WWWProject API", Version = "v1" });
+                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "WWWProject API", Version = "v1" });
+
+              
+
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization using the bearer header",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {new OpenApiSecurityScheme{Reference = new OpenApiReference
+                    {
+                        Id = "Bearer",
+                        Type = ReferenceType.SecurityScheme
+                    }}, new List<string>()}
+                });
             });
         }
     }

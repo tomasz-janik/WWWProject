@@ -13,6 +13,16 @@ namespace Server.API.v1
             public const string Create = BaseRoot + "/posts";
             public const string GetOne = BaseRoot + "/post/{postId}";
             public const string GetRange = BaseRoot + "/posts/{start}";
+
         }
+
+        public static class Identity
+        {
+            public const string Login = BaseRoot + "/identity/login";
+            public const string Register = BaseRoot + "/identity/register";
+
+        }
+
+
     }
 }

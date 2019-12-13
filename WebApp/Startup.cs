@@ -47,10 +47,13 @@ namespace Server
             }
             
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+        //    app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseCors("CorsPolicy");
+            app.UseAuthentication();
+            app.UseAuthorization();
+             app.UseCors("CorsPolicy");
+            
 
             var swaggerOptions = new SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
@@ -63,7 +66,6 @@ namespace Server
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
 

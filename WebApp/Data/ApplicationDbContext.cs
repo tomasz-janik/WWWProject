@@ -15,6 +15,6 @@ namespace Server.Data
         }
 
         public  DbSet<Post> Posts { set; get; }
-
+        public DbSet<RefreshToken> RefreshTokens { set; get; }
     }
 }

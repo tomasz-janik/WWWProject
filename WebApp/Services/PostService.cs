@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Domain;
+using Server.Models;
 
 namespace Server.Services
 {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Server.API.v1.Requests.Queries;
 using Server.API.v1.Responses;
 using Server.Domain;
+using Server.Models;
 using Server.Services;
 
 namespace Server.Helpers

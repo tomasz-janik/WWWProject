@@ -55,5 +55,18 @@ namespace Server.Controllers.v1
 
             return Ok(_mapper.Map<AuthSuccessResponse>(authResult));
         }
+
+        [HttpPost(ApiRoutes.Identity.Refresh)]
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest refreshTokenRequest)
+        {
+            var authResult = await _identityService.RefreshTokenAsync(refreshTokenRequest.Token, refreshTokenRequest.RefreshToken);
+
+            if (!authResult.Success)
+            {
+                return BadRequest(_mapper.Map<AuthFailedResponse>(authResult));
+            }
+
+            return Ok(_mapper.Map<AuthSuccessResponse>(authResult));
+        }
     }
 }

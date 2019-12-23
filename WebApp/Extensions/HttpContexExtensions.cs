@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace Server.Extensions
 {
@@ -17,5 +18,16 @@ namespace Server.Extensions
 
             return context.User.Claims.Single(x => x.Type == "id").Value;
         }
+
+        public static string GetTokenExpiryTime(this HttpContext context)
+        {
+            if (context.User == null)
+            {
+                return string.Empty;
+            }
+
+            return context.User.Claims.Single(x => x.Type == JwtRegisteredClaimNames.Exp).Value;
+        }
     }
 }
+ 

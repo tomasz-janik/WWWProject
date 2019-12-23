@@ -20,7 +20,7 @@ namespace Server.API.v1
         {
             public const string Login = BaseRoot + "/identity/login";
             public const string Register = BaseRoot + "/identity/register";
-
+            public const string Refresh = BaseRoot + "/identity/refresh";
         }
 
 

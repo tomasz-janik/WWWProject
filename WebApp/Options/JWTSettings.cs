@@ -8,5 +8,6 @@ namespace Server.Options
     public class JWTSettings
     {
         public string Secret { set; get; }
+        public TimeSpan TokenLifeTime { get; set; }
     }
 }

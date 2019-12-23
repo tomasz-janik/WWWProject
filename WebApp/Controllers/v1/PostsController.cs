@@ -15,6 +15,7 @@ using Server.API.v1.Responses;
 using Server.Domain;
 using Server.Extensions;
 using Server.Helpers;
+using Server.Models;
 using Server.Services;
 
 namespace Server.Controllers.v1

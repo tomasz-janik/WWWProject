@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Server.API.v1.Responses;
 using Server.Domain;
+using Server.Models;
 
 namespace Server.Mapping
 {

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Server.Services;
+using Server.Services.Interfaces;
 
 namespace Server.Installers.Services
 {
@@ -14,8 +16,13 @@ namespace Server.Installers.Services
     {
         public void Install(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
+            services.AddDirectoryBrowser();
+
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddSingleton<IFileService, FileService>();
+            services.AddSingleton(new FileExtensionContentTypeProvider());
 
             services.AddSingleton<IUriService>(provider =>
             {

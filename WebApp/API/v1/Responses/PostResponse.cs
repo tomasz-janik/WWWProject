@@ -10,5 +10,6 @@ namespace Server.API.v1.Responses
         public string Name { set; get; }
         public string Description { set; get; }
         public DateTime Created { set; get; }
+        public string Image { get; set; }
     }
 }

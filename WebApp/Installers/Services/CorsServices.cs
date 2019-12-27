@@ -16,8 +16,7 @@ namespace Server.Installers.Services
                 options.AddPolicy("CorsPolicy",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost.com",
-                                "https://www.localhost.com")
+                        builder
                             .AllowAnyHeader()
                             .AllowAnyMethod()
                             .AllowAnyOrigin();

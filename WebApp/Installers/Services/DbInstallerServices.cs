@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Server.Data;
 using Server.Models;
 using Server.Services;
+using Server.Services.Interfaces;
 
 namespace Server.Installers.Services
 {
@@ -17,6 +18,7 @@ namespace Server.Installers.Services
                     configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IPostService, PostService>();

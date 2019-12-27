@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.WebUtilities;
 using Server.API.v1;
 using Server.API.v1.Requests.Queries;
+using Server.Services.Interfaces;
 
 namespace Server.Services
 {
@@ -18,6 +19,11 @@ namespace Server.Services
             return new Uri(_baseUri+ApiRoutes.Posts.GetOne.Replace("{postId}",postId));
         }
 
+        public Uri GetImageUri(string image)
+        {
+            return new Uri(_baseUri + ApiRoutes.Images.Post.Replace("{image}", image));
+        }
+
         public Uri GetAllPostUri(PaginationQuery paginationQuery = null)
         {
          
@@ -26,7 +32,7 @@ namespace Server.Services
               return new Uri(_baseUri);
           }
 
-          var pagiUri = QueryHelpers.AddQueryString(_baseUri, "pageNumber", paginationQuery.PageNumber.ToString());
+          var pagiUri = QueryHelpers.AddQueryString(_baseUri+ApiRoutes.Posts.GetPosts, "pageNumber", paginationQuery.PageNumber.ToString());
           pagiUri = QueryHelpers.AddQueryString(pagiUri, "pageSize", paginationQuery.PageSize.ToString());
 
           return new Uri(pagiUri);        }

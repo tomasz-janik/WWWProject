@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Server.Options;
 using Server.Services;
+using Server.Services.Interfaces;
 
 namespace Server.Installers.Services
 {
@@ -18,12 +19,12 @@ namespace Server.Installers.Services
         public void Install(IConfiguration configuration, IServiceCollection services)
         {
             var jwtSettings = new JWTSettings();
-            configuration.Bind(nameof(JWTSettings),jwtSettings);
+            configuration.Bind(nameof(JWTSettings), jwtSettings);
 
             services.AddSingleton(jwtSettings);
             services.AddScoped<IIdentityService, IdentityService>();
 
-             var tokenValidationParameters = new TokenValidationParameters
+            var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
@@ -35,6 +36,7 @@ namespace Server.Installers.Services
 
             services.AddSingleton(tokenValidationParameters);
             
+            services.AddAuthorization();
             services.AddAuthentication(configuration =>
                 {
                     configuration.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -16,7 +16,7 @@ namespace Server.Domain
         public string Name { set; get; }
         public string Description { set; get; }
         public DateTime Created { set; get; }
-
+        public string Image { set; get; }
         public string UserId { set; get; }
         [ForeignKey(nameof(UserId))]
         public IdentityUser User { set; get; }

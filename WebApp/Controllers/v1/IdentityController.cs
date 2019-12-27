@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Server.API.v1;
 using Server.API.v1.Requests;
 using Server.API.v1.Responses;
 using Server.Domain;
 using Server.Services;
+using Server.Services.Interfaces;
 
 namespace Server.Controllers.v1
 {
+    [EnableCors("CorsPolicy")]
     public class IdentityController : Controller
     {
         private readonly IIdentityService _identityService;

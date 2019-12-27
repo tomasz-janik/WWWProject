@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Domain;
 using Server.Models;
+using Server.Services.Interfaces;
 
 namespace Server.Services
 {
@@ -22,14 +23,15 @@ namespace Server.Services
 
         public async Task<List<Post>> GetPosts(PaginationFilter paginationFilter = null)
         {
-            if (paginationFilter == null)
+            if (paginationFilter == null || paginationFilter.PageNumber < 1 || paginationFilter.PageSize < 1)
             {
                 return await _applicationDb.Posts
                     .ToListAsync();
             }
 
+            var skip = paginationFilter.PageSize * (paginationFilter.PageNumber - 1);
             return await  _applicationDb.Posts.OrderByDescending(post => post.Created)
-                .Skip(paginationFilter.PageSize*paginationFilter.PageNumber)
+                .Skip(skip)
                 .Take(paginationFilter.PageSize)
                 .ToListAsync();
         }

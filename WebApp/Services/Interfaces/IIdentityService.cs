@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Server.Domain;
+﻿using System.Threading.Tasks;
 using Server.Models;
 
-namespace Server.Services
+namespace Server.Services.Interfaces
 {
     public interface IIdentityService
     {

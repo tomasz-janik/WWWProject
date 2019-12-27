@@ -8,8 +8,8 @@ namespace Server.Services.Interfaces
 {
     public interface IPostService
     {
-        Task<List<Post>> GetPosts(PaginationFilter paginationFilter = null);
-        Task<Post> GetByGuid(Guid id);
-        Task<bool> AddPost(Post post);
+        Task<List<PostDb>> GetPostsAsync(PaginationFilter paginationFilter = null);
+        Task<PostDb> GetByGuidAsync(Guid id);
+        Task<bool> AddPostAsync(PostDb postDb);
     }
 }

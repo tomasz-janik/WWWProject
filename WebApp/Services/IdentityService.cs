@@ -50,6 +50,7 @@ namespace Server.Services
             };
 
             var createUser = await _userManager.CreateAsync(newUser,password);
+            await _userManager.AddToRoleAsync(newUser, "User");
 
             if (!createUser.Succeeded)
             {
@@ -183,6 +184,27 @@ namespace Server.Services
                 new Claim("id", newUser.Id)
             };
 
+
+            var userClaims = await _userManager.GetClaimsAsync(newUser);
+            claims.AddRange(userClaims);
+
+            var userRoles = await _userManager.GetRolesAsync(newUser);
+            foreach (var userRole in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, userRole));
+                var role = await _userManager.FindByNameAsync(userRole);
+                if (role == null) continue;
+                var roleClaims = await _userManager.GetClaimsAsync(role);
+
+                foreach (var roleClaim in roleClaims)
+                {
+                    if (claims.Contains(roleClaim))
+                        continue;
+
+                    claims.Add(roleClaim);
+                }
+            }
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -192,7 +214,7 @@ namespace Server.Services
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            var refreshToken = new RefreshToken
+            var refreshToken = new RefreshTokenDb
             {
                 JwtId =  token.Id,
                 UserId = newUser.Id,

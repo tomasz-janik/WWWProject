@@ -23,7 +23,7 @@ namespace Server.Controllers.v1
         [HttpGet(ApiRoutes.Images.Post)]
         public IActionResult PostImage([FromRoute]string image)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "post", image);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "postDb", image);
 
             if (!System.IO.File.Exists(path))
             {

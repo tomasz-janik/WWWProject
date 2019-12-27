@@ -221,7 +221,7 @@ namespace Server.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Server.Domain.Post", b =>
+            modelBuilder.Entity("Server.Domain.PostDb", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,7 +246,7 @@ namespace Server.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("Server.Domain.RefreshToken", b =>
+            modelBuilder.Entity("Server.Domain.RefreshTokenDb", b =>
                 {
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(450)");
@@ -327,14 +327,14 @@ namespace Server.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Server.Domain.Post", b =>
+            modelBuilder.Entity("Server.Domain.PostDb", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("Server.Domain.RefreshToken", b =>
+            modelBuilder.Entity("Server.Domain.RefreshTokenDb", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()

@@ -16,11 +16,13 @@ namespace Server.Mapping
     {
         public DomainToResponseProfile()
         {
-            CreateMap<Post, PostResponse>().AfterMap<PostResponseImagePath>();
-            CreateMap<Post, CreatePostResponse>();
+            CreateMap<PostDb, PostResponse>().AfterMap<PostResponseImagePath>();
+            CreateMap<PostDb, CreatePostResponse>();
 
             CreateMap<AuthenticationResult, AuthFailedResponse>();
             CreateMap<AuthenticationResult, AuthSuccessResponse>();
+
+           
         }
     }
 }

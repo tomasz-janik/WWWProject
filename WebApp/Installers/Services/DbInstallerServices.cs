@@ -22,6 +22,8 @@ namespace Server.Installers.Services
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<ICommentService, CommentService>();
+
         }
     }
 }

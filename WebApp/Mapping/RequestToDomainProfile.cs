@@ -15,7 +15,7 @@ namespace Server.Mapping
         public RequestToDomainProfile()
         {
             CreateMap<PaginationQuery, PaginationFilter>();
-            CreateMap<CreatePostRequest, Post>();
+            CreateMap<CreatePostRequest, PostDb>();
         }
     }
 }

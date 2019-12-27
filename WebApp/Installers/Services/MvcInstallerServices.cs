@@ -20,7 +20,6 @@ namespace Server.Installers.Services
             services.AddDirectoryBrowser();
 
             services.AddAutoMapper(typeof(Startup));
-
             services.AddSingleton<IFileService, FileService>();
             services.AddSingleton(new FileExtensionContentTypeProvider());
 

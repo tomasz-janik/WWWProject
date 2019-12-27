@@ -21,7 +21,7 @@ namespace Server.Services
         }
 
 
-        public async Task<List<Post>> GetPosts(PaginationFilter paginationFilter = null)
+        public async Task<List<PostDb>> GetPostsAsync(PaginationFilter paginationFilter = null)
         {
             if (paginationFilter == null || paginationFilter.PageNumber < 1 || paginationFilter.PageSize < 1)
             {
@@ -36,15 +36,15 @@ namespace Server.Services
                 .ToListAsync();
         }
 
-        public async Task<Post> GetByGuid(Guid id)
+        public async Task<PostDb> GetByGuidAsync(Guid id)
         {
             return await _applicationDb.Posts
                 .SingleOrDefaultAsync(post => post.Id == id);
         }
 
-        public async Task<bool> AddPost(Post post)
+        public async Task<bool> AddPostAsync(PostDb postDb)
         {
-            await _applicationDb.Posts.AddAsync(post);
+            await _applicationDb.Posts.AddAsync(postDb);
             var created = await _applicationDb.SaveChangesAsync();
             return created > 0;
         }

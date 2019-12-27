@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace Server.API.v1.Responses
 {
-    public class PostResponse
+    public class CommentResponse
     {
         public Guid Id { set; get; }
-        public string Name { set; get; }
-        public string Description { set; get; }
+        public string Comment { set; get; }
         public DateTime Created { set; get; }
-        public string Image { get; set; }
+        public string Author { set; get; }
     }
 }

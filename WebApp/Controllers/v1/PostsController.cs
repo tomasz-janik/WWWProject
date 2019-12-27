@@ -44,7 +44,7 @@ namespace Server.Controllers.v1
         {
             var paginationFilter = _mapper.Map<PaginationFilter>(paginationQuery);
 
-            var posts = await _postService.GetPosts(paginationFilter);
+            var posts = await _postService.GetPostsAsync(paginationFilter);
             var postsResponse = _mapper.Map<List<PostResponse>>(posts);
 
             if (paginationQuery == null || paginationQuery.PageNumber < 1 || paginationQuery.PageSize < 1)
@@ -58,7 +58,7 @@ namespace Server.Controllers.v1
         [HttpGet(ApiRoutes.Posts.GetOne)]
         public async  Task<IActionResult> GetPost([FromRoute]Guid postId)
         {
-            var post = await _postService.GetByGuid(postId);
+            var post = await _postService.GetByGuidAsync(postId);
 
             if (post == null)
             {
@@ -69,10 +69,11 @@ namespace Server.Controllers.v1
         }
 
         [HttpPost(ApiRoutes.Posts.Create)]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreatePost( CreatePostRequest postRequest)
         {
-            var post = new Post
+            var post = new PostDb
             {
                 Description = postRequest.Description,
                 Name = postRequest.Name,
@@ -81,7 +82,7 @@ namespace Server.Controllers.v1
                 Image = Guid.NewGuid() + Path.GetExtension(postRequest.Image.FileName)
             };
 
-            await _postService.AddPost(post);
+            await _postService.AddPostAsync(post);
             await _fileService.SaveImageAsync(post.Image, postRequest.Image,"post");
            
            var locationUrl = _uriService.GetPostUri(post.Id.ToString());

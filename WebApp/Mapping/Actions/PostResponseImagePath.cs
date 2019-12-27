@@ -9,7 +9,7 @@ using Server.Services.Interfaces;
 
 namespace Server.Mapping.Actions
 {
-    public class PostResponseImagePath : IMappingAction<Post, PostResponse>
+    public class PostResponseImagePath : IMappingAction<PostDb, PostResponse>
     {
         private readonly IUriService _uriService;
 
@@ -18,7 +18,7 @@ namespace Server.Mapping.Actions
             _uriService = uriService;
         }
 
-        public void Process(Post source, PostResponse destination, ResolutionContext context)
+        public void Process(PostDb source, PostResponse destination, ResolutionContext context)
         {
             destination.Image = _uriService.GetImageUri(source.Image).ToString();
         }

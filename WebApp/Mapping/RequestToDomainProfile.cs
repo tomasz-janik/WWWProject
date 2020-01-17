@@ -6,6 +6,7 @@ using AutoMapper;
 using Server.API.v1.Requests;
 using Server.API.v1.Requests.Queries;
 using Server.Domain;
+using Server.Models;
 
 namespace Server.Mapping
 {
@@ -14,7 +15,7 @@ namespace Server.Mapping
         public RequestToDomainProfile()
         {
             CreateMap<PaginationQuery, PaginationFilter>();
-            CreateMap<CreatePostRequest, Post>();
+            CreateMap<CreatePostRequest, PostDb>();
         }
     }
 }

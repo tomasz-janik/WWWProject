@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Server.API.v1.Requests.Queries;
 
-namespace Server.Services
+namespace Server.Services.Interfaces
 {
     public interface IUriService
     {
        
         Uri GetPostUri(string postId);
+        Uri GetImageUri(string image);
         Uri GetAllPostUri(PaginationQuery paginationQuery = null);
     }
 }

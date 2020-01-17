@@ -221,7 +221,7 @@ namespace Server.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Server.Domain.Post", b =>
+            modelBuilder.Entity("Server.Domain.PostDb", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

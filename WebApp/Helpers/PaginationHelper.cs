@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Server.API.v1.Requests.Queries;
 using Server.API.v1.Responses;
 using Server.Domain;
+using Server.Models;
 using Server.Services;
+using Server.Services.Interfaces;
 
 namespace Server.Helpers
 {
@@ -13,7 +15,7 @@ namespace Server.Helpers
     {
         public static PaginationResponse<T> CreateResponse<T>(IUriService uriService, List<T> postsResponse, PaginationFilter paginationFilter)
         {
-            var prevPath = paginationFilter.PageNumber > 0
+            var prevPath = paginationFilter.PageNumber > 1
                 ? uriService.GetAllPostUri(new PaginationQuery(paginationFilter.PageNumber - 1, paginationFilter.PageSize)).ToString()
                 : null;
 

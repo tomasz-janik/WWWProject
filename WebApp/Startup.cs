@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using Server.Installers;
 using Server.Installers.Services;
@@ -31,7 +34,7 @@ namespace Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-         
+
             GetInstallers<IInstallerServices>()
                 .ForEach(installer => installer.Install(Configuration, services));
 
@@ -39,17 +42,11 @@ namespace Server
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseCors("CorsPolicy");
 
             var swaggerOptions = new SwaggerOptions();
@@ -63,7 +60,6 @@ namespace Server
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
 

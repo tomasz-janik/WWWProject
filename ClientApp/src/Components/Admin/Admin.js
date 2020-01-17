@@ -50,13 +50,18 @@ class Admin extends Component {
 
     handleSubmit = (desc) => {
         console.log(this.state.files)
-        fetch('https://localhost:5001/api/v1/add', {
+        const formData = new FormData();
+
+        formData.append("Name", "name");
+        formData.append("Description", desc);
+        formData.append("Image", this.state.files[0])
+
+        fetch('https://localhost:5001/api/v1/posts', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify({ description: desc, files: this.state.files })
+            body: formData
         })
             .then(response => response.json())
             .then(response => {

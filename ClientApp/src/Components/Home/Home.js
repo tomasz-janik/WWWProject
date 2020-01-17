@@ -40,18 +40,18 @@ class Home extends Component {
                 .then(response => response.json())
                 .then(response => {
                     if (this._isMounted) {
-                        console.log(response);
-                        this.setState(
-                            {
+                        if (response.data) {
+                            this.setState({
                                 isLoading: false,
                                 index: this.state.index + 10,
-                                data: this.state.data.concat(response),
+                                //data: this.state.data.concat(response.data),
                                 hasMore: response.hasMore
-                            });
+                            })
+                        }
+
                     }
                 })
                 .catch(err => {
-                    console.log(err);
                     if (this._isMounted) {
                         this.setState(
                             {

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Server.API.v1.Responses;
 using Server.Domain;
+using Server.Mapping.Actions;
+using Server.Models;
+using Server.Services.Interfaces;
 
 namespace Server.Mapping
 {
@@ -12,9 +16,13 @@ namespace Server.Mapping
     {
         public DomainToResponseProfile()
         {
-            CreateMap<Post, PostResponse>();
-            CreateMap<Post, CreatePostResponse>();
-            
+            CreateMap<PostDb, PostResponse>().AfterMap<PostResponseImagePath>();
+            CreateMap<PostDb, CreatePostResponse>();
+
+            CreateMap<AuthenticationResult, AuthFailedResponse>();
+            CreateMap<AuthenticationResult, AuthSuccessResponse>();
+
+           
         }
     }
 }

@@ -140,6 +140,7 @@
         <e p="Startup.cs" t="Include" />
         <e p="wwwroot" t="Include">
           <e p="images" t="Include">
+            <e p="post" t="Include" />
             <e p="postDb" t="Include">
               <e p="3e933692-0b3f-4180-9265-15a82d8c04b8.png" t="Include" />
               <e p="7e6fd8a8-f8df-47b7-9933-c9831aa6410c.png" t="Include" />

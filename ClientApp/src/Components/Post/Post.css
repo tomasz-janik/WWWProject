@@ -37,3 +37,10 @@
 .post_name{
     font-size: 28px;
 }
+
+.divider{
+    height: 1px;
+    width: 100%;
+    background-color: #000000;
+    margin-bottom: 16px;
+}

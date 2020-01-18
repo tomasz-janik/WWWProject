@@ -75,13 +75,13 @@ class Register extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label className='label_login' htmlFor="email"><b>Login</b></label>
-                        <input className='input_field' placeholder="Enter Login"
+                        <input className='input_field_register' placeholder="Enter Login"
                             type="text" value={this.state.login} onChange={this.handleLoginChange}
                             name="Login" required />
                     </div>
                     <div>
                         <label className='label_login' htmlFor="Password"><b>Password</b></label>
-                        <input className='input_field' placeholder="Enter Password"
+                        <input className='input_field_register' placeholder="Enter Password"
                             type="password" value={this.state.password} onChange={this.handlePasswordChange}
                             name="Password" required />
                     </div>

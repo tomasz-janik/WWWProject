@@ -65,13 +65,13 @@ class Login extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label className='label_login' htmlFor="username"><b>Username</b></label>
-                        <input className='input_field' placeholder="Enter Username"
+                        <input className='input_field_login' placeholder="Enter Username"
                             type="text" value={this.state.username} onChange={this.handleUsernameChange}
                             name="username" required />
                     </div>
                     <div>
                         <label className='label_login' htmlFor="password"><b>Password</b></label>
-                        <input className='input_field' placeholder="Enter Password"
+                        <input className='input_field_login' placeholder="Enter Password"
                             type="password" value={this.state.password} onChange={this.handlePasswordChange}
                             name="password" required />
                     </div>

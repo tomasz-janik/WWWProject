@@ -1,0 +1,46 @@
+.input_field_comments {
+    float: left;
+    width: 80%;
+    padding: 13px 20px;
+    margin: 2px 0 2px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.label_comment{
+    text-align: left;
+    float: left;
+    padding: 16px 0 0 20%;
+}
+
+.comment_button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 0;
+    margin: 2px 0 16px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+}
+
+.comment_button:hover {
+    opacity: 0.8;
+}
+
+.commend_card{
+    background-color: #30333C;
+    border: 2px solid #30333C;
+    border-radius: 5px;
+    width: 50%;
+    margin: 8px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 8px;
+}
+
+.comments{
+    font-size: 32px;
+}

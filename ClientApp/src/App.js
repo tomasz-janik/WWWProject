@@ -32,6 +32,18 @@ class App extends Component {
       isLogged: 'true',
       isAdmin: isAdmin
     })
+    setInterval(() => {
+      fetch('https://localhost:5001/api/v1/identity/refresh', {
+        method: 'POST',
+        headers: new Headers({ 'content-type': 'application/json' }),
+        body: JSON.stringify({ token: sessionStorage.getItem('token'), refreshToken: sessionStorage.getItem('refreshToken') })
+      })
+        .then(response => response.json())
+        .then((response) => {
+          sessionStorage.setItem('token', response.token)
+          sessionStorage.setItem('refreshToken', response.refreshToken)
+        })
+    }, 900000);
   }
 
   render() {

@@ -50,7 +50,7 @@ namespace Server.Services
             };
 
             var createUser = await _userManager.CreateAsync(newUser,password);
-            await _userManager.AddToRoleAsync(newUser, "Admin");
+            await _userManager.AddToRoleAsync(newUser, "User");
 
             if (!createUser.Succeeded)
             {

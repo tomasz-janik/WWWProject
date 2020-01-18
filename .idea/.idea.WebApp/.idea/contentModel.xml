@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Thomas\.Rider2019.3\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Thomas\.Rider2019.3\config\Extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Thomas\.Rider2019.3\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\Thomas\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Thomas\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_WebApp.-434480947.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Thomas\source\repos\WWWProject_Final" t="IncludeFlat">
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="WebApp" t="IncludeRecursive">
+        <e p=".gitignore" t="Include" />
+        <e p="API" t="Include">
+          <e p="v1" t="Include">
+            <e p="ApiRoutes.cs" t="Include" />
+            <e p="Requests" t="Include">
+              <e p="CreateCommentRequest.cs" t="Include" />
+              <e p="CreatePostRequest.cs" t="Include" />
+              <e p="Queries" t="Include">
+                <e p="PaginationQuery.cs" t="Include" />
+              </e>
+              <e p="RefreshTokenRequest.cs" t="Include" />
+              <e p="UserLoginRequest.cs" t="Include" />
+              <e p="UserRegistrationRequest.cs" t="Include" />
+            </e>
+            <e p="Responses" t="Include">
+              <e p="AuthFailedResponse.cs" t="Include" />
+              <e p="AuthSuccessResponse.cs" t="Include" />
+              <e p="CommentResponse.cs" t="Include" />
+              <e p="CreatePostResponse.cs" t="Include" />
+              <e p="DataResponse.cs" t="Include" />
+              <e p="PaginationResponse.cs" t="Include" />
+              <e p="PostResponse.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="v1" t="Include">
+            <e p="CommentsController.cs" t="Include" />
+            <e p="IdentityController.cs" t="Include" />
+            <e p="ImagesController.cs" t="Include" />
+            <e p="PostsController.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Data" t="Include">
+          <e p="ApplicationDbContext.cs" t="Include" />
+          <e p="Migrations" t="Include">
+            <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
+            <e p="00000000000000_CreateIdentitySchema.Designer.cs" t="Include" />
+            <e p="20191208120341_Posts.cs" t="Include" />
+            <e p="20191208120341_Posts.Designer.cs" t="Include" />
+            <e p="20191208135414_PostsUpdate.cs" t="Include" />
+            <e p="20191208135414_PostsUpdate.Designer.cs" t="Include" />
+            <e p="20191213164917_AddedUserIdInPosts.cs" t="Include" />
+            <e p="20191213164917_AddedUserIdInPosts.Designer.cs" t="Include" />
+            <e p="20191213172937_AddedForeignKeyForPosts.cs" t="Include" />
+            <e p="20191213172937_AddedForeignKeyForPosts.Designer.cs" t="Include" />
+            <e p="20191213184916_AddedRefreshTokens.cs" t="Include" />
+            <e p="20191213184916_AddedRefreshTokens.Designer.cs" t="Include" />
+            <e p="20191223112452_AddPrimaryKeyInRefreshTokens.cs" t="Include" />
+            <e p="20191223112452_AddPrimaryKeyInRefreshTokens.Designer.cs" t="Include" />
+            <e p="20191225154502_AddImageFieldInPosts.cs" t="Include" />
+            <e p="20191225154502_AddImageFieldInPosts.Designer.cs" t="Include" />
+            <e p="20191227114231_AddComments.cs" t="Include" />
+            <e p="20191227114231_AddComments.Designer.cs" t="Include" />
+            <e p="20191227114250_AddRoles.cs" t="Include" />
+            <e p="20191227114250_AddRoles.Designer.cs" t="Include" />
+            <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Domain" t="Include">
+          <e p="CommentDb.cs" t="Include" />
+          <e p="PostDb.cs" t="Include" />
+          <e p="RefreshTokenDb.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="HttpContexExtensions.cs" t="Include" />
+        </e>
+        <e p="Helpers" t="Include">
+          <e p="PaginationHelper.cs" t="Include" />
+        </e>
+        <e p="Installers" t="Include">
+          <e p="Services" t="Include">
+            <e p="CorsServices.cs" t="Include" />
+            <e p="DbInstallerServices.cs" t="Include" />
+            <e p="IInstallerServices.cs" t="Include" />
+            <e p="JwtInstallerServices.cs" t="Include" />
+            <e p="MvcInstallerServices.cs" t="Include" />
+            <e p="SwaggerInstallerServices.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Mapping" t="Include">
+          <e p="Actions" t="Include">
+            <e p="GetCommentAuthorName.cs" t="Include" />
+            <e p="PostResponseImagePath.cs" t="Include" />
+          </e>
+          <e p="DomainToResponseProfile.cs" t="Include" />
+          <e p="RequestToDomainProfile.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="ApplicationUser.cs" t="Include" />
+          <e p="AuthenticationResult.cs" t="Include" />
+          <e p="CommentModel.cs" t="Include" />
+          <e p="FileUploadOperation.cs" t="Include" />
+          <e p="PaginationFilter.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Server.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Options" t="Include">
+          <e p="JWTSettings.cs" t="Include" />
+          <e p="SwaggerOptions.cs" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Server.csproj" t="IncludeRecursive" />
+        <e p="Services" t="Include">
+          <e p="CommentService.cs" t="Include" />
+          <e p="FileService.cs" t="Include" />
+          <e p="IdentityService.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="ICommentService.cs" t="Include" />
+            <e p="IFileSerivce.cs" t="Include" />
+            <e p="IIdentityService.cs" t="Include" />
+            <e p="IPostService.cs" t="Include" />
+            <e p="IUriService.cs" t="Include" />
+          </e>
+          <e p="PostService.cs" t="Include" />
+          <e p="UriService.cs" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="wwwroot" t="Include">
+          <e p="images" t="Include">
+            <e p="post" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="WebApp.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

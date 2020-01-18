@@ -16,14 +16,18 @@ class List extends Component {
   }
 
   render() {
-    if (this.props.logged) {
-      this.list = this.list.filter(entry => entry.id !== 'Login');
+    var renderList = [...this.list]
+    if (this.props.logged === 'true') {
+      renderList = renderList.filter(entry => entry.id !== 'Login');
     }
-    if (!this.props.admin) {
-      this.list = this.list.filter(entry => entry.id !== 'Admin');
+    if (this.props.admin === null || this.props.admin === 'false') {
+      renderList = renderList.filter(entry => entry.id !== 'Admin');
+    }
+    if (this.props.admin === 'true' || this.props.logged === 'true') {
+      renderList = renderList.filter(entry => entry.id !== 'Register');
     }
 
-    let nodes = this.list.map((node, key) => {
+    let nodes = renderList.map((node, key) => {
       return (
         <Node node={node} children={node.submenu} key={key} active={this.state.active} setState={this.changeState} />
       );
@@ -88,6 +92,10 @@ class List extends Component {
     {
       id: 'Login',
       link: '/login',
+    },
+    {
+      id: 'Register',
+      link: '/register',
     },
     {
       id: 'Admin',

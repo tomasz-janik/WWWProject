@@ -1,19 +1,19 @@
-.input_description_field, .input_name_field {
-    width: 80%;
+.input_field {
+    width: 60%;
     padding: 12px 20px;
-    margin: 4px 10%;
+    margin: 4px 20%;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
-.label_description, .label_name {
+.label_login{
     text-align: left;
     float: left;
-    padding: 16px 0 0 10%;
+    padding: 16px 0 0 20%;
 }
 
-.submit_button {
+.login_button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -23,6 +23,6 @@
     width: 60%;
 }
 
-.submit_button:hover {
+.login_button:hover {
     opacity: 0.8;
 }

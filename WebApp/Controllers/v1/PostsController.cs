@@ -71,7 +71,7 @@ namespace Server.Controllers.v1
         [HttpPost(ApiRoutes.Posts.Create)]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreatePost( CreatePostRequest postRequest)
+        public async Task<IActionResult> CreatePost(CreatePostRequest postRequest)
         {
             var post = new PostDb
             {

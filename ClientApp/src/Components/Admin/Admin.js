@@ -4,6 +4,7 @@ import './Admin.css';
 import Card from '../Card/Card';
 import DragAndDrop from '../DragAndDrop/DragAndDrop';
 import Form from '../AddPost/Form/Form'
+var jwtDecode = require('jwt-decode');
 
 class Admin extends Component {
 
@@ -23,7 +24,6 @@ class Admin extends Component {
     componentWillUnmount() {
         this._isMounted = false;
     }
-
 
     handleDrop = (files) => {
         let fileList = this.state.files
@@ -48,19 +48,17 @@ class Admin extends Component {
 
     }
 
-    handleSubmit = (desc) => {
-        console.log(this.state.files)
+    handleSubmit = (name, description) => {
         const formData = new FormData();
-
-        formData.append("Name", "name");
-        formData.append("Description", desc);
         formData.append("Image", this.state.files[0])
 
-        fetch('https://localhost:5001/api/v1/posts', {
+        console.log('Authorization:' + 'Bearer ' + sessionStorage.getItem('token'))
+        fetch('https://localhost:5001/api/v1/posts?Name=' + name + '&Description=' + description, {
             method: 'POST',
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
+            headers: new Headers(
+                { 'Authorization': 'Bearer ' + sessionStorage.getItem("token") },
+                { 'Content-Type': 'multipart/form-data' }
+            ),
             body: formData
         })
             .then(response => response.json())

@@ -29,15 +29,15 @@ class Ranking extends Component {
     }
 
     loadData = () => {
-        fetch('http://localhost:8081/data2')
+        fetch('https://localhost:5001/api/v1/posts?pageNumber=1&pageSize=1000')
             .then(response => response.json())
             .then(response => {
                 if (this._isMounted) {
                     this.setState(
                         {
                             isLoading: false,
-                            data: this.state.data.concat(response),
-                            displayedData: this.state.data.concat(response)
+                            data: this.state.data.concat(response.data),
+                            displayedData: this.state.data.concat(response.data)
                         });
                 }
             })
@@ -85,6 +85,7 @@ class Ranking extends Component {
     renderTableHeader() {
         if (this.state.data[0]) {
             let header = Object.keys(this.state.data[0])
+            header = header.filter(entry => entry === 'name' || entry === 'description' || entry === 'created');
             return header.map((key, index) => {
                 return <th key={index} onClick={e => this.sortArray(key)}>
                     <div>
@@ -94,6 +95,13 @@ class Ranking extends Component {
                 </th>
             })
         }
+    }
+
+    appendLeadingZeros = (n) => {
+        if (n <= 9) {
+            return "0" + n;
+        }
+        return n
     }
 
     renderTableData() {
@@ -107,11 +115,13 @@ class Ranking extends Component {
             )
         }
         return this.state.displayedData.map((entry, index) => {
+            let current_datetime = new Date(entry.created)
+            let formatted_date = this.appendLeadingZeros(current_datetime.getDate()) + "-" + this.appendLeadingZeros(current_datetime.getMonth() + 1) + "-" + this.appendLeadingZeros(current_datetime.getFullYear()) + " " + this.appendLeadingZeros(current_datetime.getHours()) + ":" + this.appendLeadingZeros(current_datetime.getMinutes()) + ":" + this.appendLeadingZeros(current_datetime.getSeconds())
             return (
                 <tr key={index}>
-                    <td>{entry.id}</td>
                     <td>{entry.name}</td>
-                    <td>{entry.rating}</td>
+                    <td>{entry.description}</td>
+                    <td>{formatted_date}</td>
                 </tr>
             )
         })

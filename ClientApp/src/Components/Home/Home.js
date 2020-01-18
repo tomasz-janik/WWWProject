@@ -9,7 +9,8 @@ class Home extends Component {
 
     state = {
         isLoading: false,
-        index: 0,
+        index: 1,
+        url: 'https://localhost:5001/api/v1/posts?pageNumber=1&pageSize=2',
         data: [],
         hasMore: true,
         error: false,
@@ -36,16 +37,16 @@ class Home extends Component {
 
     loadData = () => {
         this.setState({ isLoading: true }, () => {
-            fetch('https://localhost:5001/api/v1/posts/' + this.state.index)
+            fetch(this.state.url)
                 .then(response => response.json())
                 .then(response => {
                     if (this._isMounted) {
                         if (response.data) {
                             this.setState({
                                 isLoading: false,
-                                index: this.state.index + 10,
-                                //data: this.state.data.concat(response.data),
-                                hasMore: response.hasMore
+                                url: response.nextPage,
+                                data: this.state.data.concat(response.data),
+                                hasMore: response.nextPage !== null
                             })
                         }
 

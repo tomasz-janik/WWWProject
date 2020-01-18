@@ -52,7 +52,11 @@ class Admin extends Component {
         const formData = new FormData();
         formData.append("Image", this.state.files[0])
 
-        console.log('Authorization:' + 'Bearer ' + sessionStorage.getItem('token'))
+        this.setState({
+            files: [],
+
+        })
+
         fetch('https://localhost:5001/api/v1/posts?Name=' + name + '&Description=' + description, {
             method: 'POST',
             headers: new Headers(

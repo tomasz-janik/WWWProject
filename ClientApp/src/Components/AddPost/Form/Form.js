@@ -23,6 +23,10 @@ class Form extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.handleSubmit(this.state.name, this.state.description);
+        this.setState({
+            name: "",
+            description: ""
+        })
     }
 
     render() {

@@ -40,7 +40,7 @@ namespace Server.Controllers.v1
             _fileService = fileService;
         }
         [HttpGet(ApiRoutes.Posts.GetPosts)]
-        public async  Task<IActionResult> GetPosts([FromQuery] PaginationQuery paginationQuery)
+        public async Task<IActionResult> GetPosts([FromQuery] PaginationQuery paginationQuery)
         {
             var paginationFilter = _mapper.Map<PaginationFilter>(paginationQuery);
 
@@ -83,7 +83,7 @@ namespace Server.Controllers.v1
             };
 
             await _postService.AddPostAsync(post);
-            await _fileService.SaveImageAsync(post.Image, postRequest.Image,"post");
+            await _fileService.SaveImageAsync(post.Image, postRequest.Image,"postDb");
            
            var locationUrl = _uriService.GetPostUri(post.Id.ToString());
 

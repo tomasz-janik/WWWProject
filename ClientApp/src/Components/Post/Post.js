@@ -8,19 +8,9 @@ class Post extends Component {
     render() {
         return (
             <Card>
-                <div className='post_name'>{this.props.name}</div>
-                <img src={this.props.image} alt={this.props.description} />
-                <div>{this.props.description}</div>
-                <div className='rating'>
-                    <button className='plus_button rating_child'>
-                        <span>&#43;</span>
-                    </button>
-                    <div className='overall_rating rating_child'>
-                        <div className='content'>
-                            {this.props.rating}
-                        </div>
-                    </div>
-                </div>
+                <div className='post_name'>{this.props.data.name}</div>
+                <img className='post_image' src={this.props.data.image} alt={this.props.data.description} />
+                <div>{this.props.data.description}</div>
             </Card>
         );
     }

@@ -4,7 +4,6 @@ import './Admin.css';
 import Card from '../Card/Card';
 import DragAndDrop from '../DragAndDrop/DragAndDrop';
 import Form from '../AddPost/Form/Form'
-var jwtDecode = require('jwt-decode');
 
 class Admin extends Component {
 

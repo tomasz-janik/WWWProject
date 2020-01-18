@@ -42,7 +42,6 @@ class Ranking extends Component {
                 }
             })
             .catch(err => {
-                console.log(err);
                 if (this._isMounted) {
                     this.setState(
                         {

@@ -5,7 +5,6 @@ import './Header.css';
 class Header extends Component {
 
     render() {
-        console.log('as');
         return (
             <div className='header'>
                 <List logged={this.props.logged} admin={this.props.admin} />

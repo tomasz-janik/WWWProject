@@ -14,7 +14,9 @@ class Comment extends Component {
         id: this.props.id,
         url: 'https://localhost:5001/api/v1/comments/',
         data: [],
-        comment: ""
+        comment: "",
+        logged: sessionStorage.getItem('isLogged'),
+        admin: sessionStorage.getItem("isAdmin")
     }
 
     componentDidMount() {
@@ -32,6 +34,10 @@ class Comment extends Component {
     }
 
     handleSubmit = (event) => {
+        this.setState({
+            comment: ""
+        })
+
         event.preventDefault();
         fetch(this.state.url, {
             method: 'POST',
@@ -41,13 +47,19 @@ class Comment extends Component {
             },
             body: JSON.stringify({ postId: this.state.id, comment: this.state.comment })
         })
-            .then(response => response.json())
             .then(response => {
                 if (this._isMounted) {
-                    window.alert('Added comment sucessfully');
+                    if (response.ok) {
+                        window.alert('Added comment sucessfully');
+                        this.loadData();
+                    }
+                    else {
+                        window.alert('Failed to add comment');
+                    }
                 }
             })
             .catch(err => {
+                console.log(err)
                 if (this._isMounted) {
                     window.alert('Failed to add comment');
                 }
@@ -62,7 +74,7 @@ class Comment extends Component {
                 if (this._isMounted) {
                     if (response.data) {
                         this.setState({
-                            data: this.state.data.concat(response.data),
+                            data: response.data,
                         })
                     }
 
@@ -70,22 +82,51 @@ class Comment extends Component {
             })
     }
 
+    deleteComment = (entry) => {
+        fetch('https://localhost:5001/api/v1/comments/' + entry.id, {
+            method: 'DELETE',
+            headers: new Headers(
+                { 'Authorization': 'Bearer ' + sessionStorage.getItem("token") },
+            )
+        })
+            .then(response => {
+                if (this._isMounted) {
+                    if (response.ok) {
+                        window.alert('Comment removed');
+                        this.loadData();
+                    }
+                    else {
+                        window.alert('Couldnt remove comment');
+                    }
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                if (this._isMounted) {
+                    window.alert('Couldnt remove comment');
+                }
+            });
+    }
+
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                {this.state.logged === 'true' && <form onSubmit={this.handleSubmit}>
                     <div>
                         <input className='input_field_comments' placeholder="Enter Comment"
                             type="text" value={this.state.comment} onChange={this.handleCommentChange}
                             name="comment" required />
                     </div>
                     <button className='comment_button' type="submit">Comment</button>
-                </form>
+                </form>}
                 {this.state.data.length === 0 && <span className='comments'>There are no comments</span>}
                 {this.state.data.length > 0 && <span className='comments'>Comments:</span>}
                 {this.state.data.map((entry, key) => (
-                    <div className='commend_card' key={key}>
-                        {entry.comment}
+                    <div className='comment_card' key={key}>
+                        <div className='comment_card_clear'>
+                            <div className='comment'>{entry.comment}</div>
+                            {this.state.admin === 'true' && <button className='comment_delete' onClick={() => this.deleteComment(entry)}><span role="img" aria-label="close">❌</span></button>}
+                        </div>
                     </div>
                 ))}
             </div>

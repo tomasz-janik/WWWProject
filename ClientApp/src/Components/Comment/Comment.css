@@ -27,10 +27,11 @@
     opacity: 0.8;
 }
 
-.commend_card{
+.comment_card{
     background-color: #30333C;
     border: 2px solid #30333C;
     border-radius: 5px;
+    min-height: 20px;
     width: 50%;
     margin: 8px auto;
     display: flex;
@@ -41,6 +42,26 @@
     padding: 8px;
 }
 
+.comment_card_clear{
+    display: block;
+    width: 100%;
+}
+
 .comments{
     font-size: 32px;
+}
+
+.comment{
+    width: 80%;
+    word-break: break-all;
+    float: left;
+    text-align: left;
+}
+
+.comment_delete{
+    float: right;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
 }

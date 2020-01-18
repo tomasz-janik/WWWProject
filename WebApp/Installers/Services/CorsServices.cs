@@ -22,6 +22,8 @@ namespace Server.Installers.Services
                             .AllowAnyOrigin();
                     });
             });
+
+            services.AddRouting(r => r.SuppressCheckForUnhandledSecurityMetadata = true);
         }
     }
 }

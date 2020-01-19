@@ -20,6 +20,7 @@ class App extends Component {
   state = {
     isLogged: sessionStorage.getItem('isLogged'),
     isAdmin: sessionStorage.getItem('isAdmin'),
+    interval: null,
   }
 
   login = (token, refreshToken) => {
@@ -32,24 +33,36 @@ class App extends Component {
       isLogged: 'true',
       isAdmin: isAdmin
     })
-    setInterval(() => {
-      fetch('https://localhost:5001/api/v1/identity/refresh', {
-        method: 'POST',
-        headers: new Headers({ 'content-type': 'application/json' }),
-        body: JSON.stringify({ token: sessionStorage.getItem('token'), refreshToken: sessionStorage.getItem('refreshToken') })
-      })
-        .then(response => response.json())
-        .then((response) => {
-          sessionStorage.setItem('token', response.token)
-          sessionStorage.setItem('refreshToken', response.refreshToken)
+    this.setState({
+      interval: setInterval(() => {
+        fetch('https://localhost:5001/api/v1/identity/refresh', {
+          method: 'POST',
+          headers: new Headers({ 'content-type': 'application/json' }),
+          body: JSON.stringify({ token: sessionStorage.getItem('token'), refreshToken: sessionStorage.getItem('refreshToken') })
         })
-    }, 900000);
+          .then(response => response.json())
+          .then((response) => {
+            sessionStorage.setItem('token', response.token)
+            sessionStorage.setItem('refreshToken', response.refreshToken)
+          })
+      }, 900000)
+    })
+  }
+
+  logout = () => {
+    sessionStorage.clear()
+    clearInterval(this.state.interval)
+    this.setState({
+      isLogged: sessionStorage.getItem('isLogged'),
+      isAdmin: sessionStorage.getItem('isAdmin'),
+      interval: null,
+    })
   }
 
   render() {
     return (
       <HashRouter>
-        <Header logged={this.state.isLogged} admin={this.state.isAdmin} />
+        <Header logged={this.state.isLogged} admin={this.state.isAdmin} logout={this.logout} />
 
         <div className='content'>
           <Switch>

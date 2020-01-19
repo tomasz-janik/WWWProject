@@ -59,7 +59,6 @@ class Comment extends Component {
                 }
             })
             .catch(err => {
-                console.log(err)
                 if (this._isMounted) {
                     window.alert('Failed to add comment');
                 }
@@ -101,7 +100,6 @@ class Comment extends Component {
                 }
             })
             .catch(err => {
-                console.log(err)
                 if (this._isMounted) {
                     window.alert('Couldnt remove comment');
                 }
@@ -126,6 +124,7 @@ class Comment extends Component {
                         <div className='comment_card_clear'>
                             <div className='comment'>{entry.comment}</div>
                             {this.state.admin === 'true' && <button className='comment_delete' onClick={() => this.deleteComment(entry)}><span role="img" aria-label="close">❌</span></button>}
+                            <div className='comment_author'>{entry.author}</div>
                         </div>
                     </div>
                 ))}

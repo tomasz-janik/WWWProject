@@ -58,6 +58,15 @@
     text-align: left;
 }
 
+.comment_author{
+    width: 80%;
+    word-break: break-all;
+    float: left;
+    text-align: left;
+    font-size: 8px;
+    color: #ccc;
+}
+
 .comment_delete{
     float: right;
     padding: 0;

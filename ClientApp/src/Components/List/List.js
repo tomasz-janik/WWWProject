@@ -36,6 +36,11 @@ class List extends Component {
     return (
       <ul className='navigation_bar'>
         {nodes}
+        {this.props.logged === 'true' && <li>
+          <a style={{ "cursor": "pointer" }} onClick={this.props.logout}>
+            Logout
+          </a>
+        </li>}
       </ul>
     );
   }

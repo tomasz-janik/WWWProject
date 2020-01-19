@@ -60,3 +60,11 @@ li.dropdown {
 .active{
     background-color: rgb(24, 26, 31);
 }
+
+.logout_button{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}

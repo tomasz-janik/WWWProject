@@ -65,6 +65,14 @@ li.dropdown {
     display: inline-block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 17px 16px 18px 16px;
+    margin-bottom: 1px;
     text-decoration: none;
+    background: #2A2D35;
+    cursor: pointer;
+    border: #2A2D35;
+}
+
+.logout_button:hover{
+    background-color: #666;
 }

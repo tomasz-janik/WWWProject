@@ -67,7 +67,13 @@ class Ranking extends Component {
                 sortedByValue: key,
                 reversed: false,
                 displayedData: this.state.displayedData.sort((a, b) => {
-                    return a[key] - b[key];
+                    if (a[key] < b[key]) {
+                        return -1;
+                    } else if (a[key] > b[key]) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
                 })
             }
         )

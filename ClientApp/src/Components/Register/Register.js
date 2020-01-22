@@ -56,14 +56,14 @@ class Register extends Component {
                     }
                     else {
                         window.alert('You are now registered!')
-                        this.props.registered()
+                        this.props.registered(response.token, response.refreshToken)
                         this.props.history.replace('/')
                     }
                 }
             })
             .catch((e) => {
                 if (this._isMounted) {
-                    window.alert('Failed to register')
+                    window.alert('Failed to register: ' + e)
                 }
             });
     }

@@ -60,19 +60,19 @@ class List extends Component {
       submenu: [
         {
           id: 'Overview',
-          link: '/contact/overview',
+          link: '/about/overview',
         },
         {
           id: 'Dropdown menu',
-          link: '/contact/dropdown_menu',
+          link: '/about/dropdown_menu',
         },
         {
           id: 'Infinite Scrolling',
-          link: '/contact/infinite_scrolling',
+          link: '/about/infinite_scrolling',
         },
         {
           id: 'Table',
-          link: '/contact/table',
+          link: '/about/table',
         }
       ]
     },

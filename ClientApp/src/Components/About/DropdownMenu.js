@@ -10,7 +10,7 @@ class DropdownMenu extends Component {
                 <h1>Dropdown Menu</h1>
                 Used as a navigation component. Can be seen on top of the website.
                 <br></br>
-                PLACEHOLDER, WRITE SOME DESCRIPTION ABOUT THIS COMPONENT
+                Helps users to navigate the site without manually writting links and groups similar contents together.
             </Card>
         );
     }

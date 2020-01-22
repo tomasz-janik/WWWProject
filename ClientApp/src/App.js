@@ -12,6 +12,10 @@ import Register from "./Components/Register/Register";
 import NoMatch from "./Components/NoMatch/NoMatch";
 import Ranking from "./Components/Ranking/Ranking";
 import Admin from "./Components/Admin/Admin";
+import Overview from './Components/About/Overview';
+import DropdownMenu from './Components/About/DropdownMenu';
+import InfiniteScrolling from './Components/About/InfiniteScrolling';
+import Table from './Components/About/Table';
 
 var jwtDecode = require('jwt-decode');
 
@@ -26,12 +30,12 @@ class App extends Component {
   login = (token, refreshToken) => {
     var isAdmin = jwtDecode(token).role === 'Admin'
     sessionStorage.setItem('isLogged', 'true')
-    sessionStorage.setItem('isAdmin', isAdmin)
+    sessionStorage.setItem('isAdmin', isAdmin.toString())
     sessionStorage.setItem('token', token)
     sessionStorage.setItem('refreshToken', refreshToken)
     this.setState({
       isLogged: 'true',
-      isAdmin: isAdmin
+      isAdmin: isAdmin.toString()
     })
     this.setState({
       interval: setInterval(() => {
@@ -69,7 +73,10 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/ranking' component={Ranking} />
             <Route exact path='/about' component={About} />
-            <Route exact path='/about/overview' component={About} />
+            <Route exact path='/about/overview' component={Overview} />
+            <Route exact path='/about/dropdown_menu' component={DropdownMenu} />
+            <Route exact path='/about/infinite_scrolling' component={InfiniteScrolling} />
+            <Route exact path='/about/table' component={Table} />
             <Route exact path='/contact' component={Contact} />
             <Route exact path='/contact/email' render={(props) => <ContactTemplate {...props} type='email' />} />
             <Route exact path='/contact/phone_number' render={(props) => <ContactTemplate {...props} type='phoneNumber' />} />

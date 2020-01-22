@@ -9,7 +9,7 @@ class Table extends Component {
             <Card>
                 <h1>Table</h1>
                 <br></br>
-                PLACEHOLDER, WRITE SOME DESCRIPTION ABOUT THIS COMPONENT
+                Allows user to sort and filter results based on some criteries e.g. date of creation.
             </Card>
         );
     }

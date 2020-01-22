@@ -11,3 +11,5 @@
 
 # exception to the rule
 !/WebApp/wwwroot/images/.gitkeep 
+Images/*
+ToUpload/*

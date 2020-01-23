@@ -70,7 +70,7 @@ class App extends Component {
 
         <div className='content'>
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={(props) => <Home {...props} isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} />} />
             <Route exact path='/ranking' component={Ranking} />
             <Route exact path='/about' component={About} />
             <Route exact path='/about/overview' component={Overview} />

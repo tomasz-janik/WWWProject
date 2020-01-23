@@ -70,7 +70,7 @@ class Home extends Component {
         return (
             <div>
                 {this.state.data.map((entry, key) => (
-                    <Post key={key} data={entry} />
+                    <Post key={key} data={entry} isLogged={this.props.isLogged} isAdmin={this.props.isAdmin} />
                 ))}
                 {this.state.error &&
                     <Card>

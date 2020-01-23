@@ -15,8 +15,6 @@ class Comment extends Component {
         url: 'https://localhost:5001/api/v1/comments/',
         data: [],
         comment: "",
-        logged: sessionStorage.getItem('isLogged'),
-        admin: sessionStorage.getItem("isAdmin")
     }
 
     componentDidMount() {
@@ -109,7 +107,7 @@ class Comment extends Component {
     render() {
         return (
             <div>
-                {this.state.logged === 'true' && <form onSubmit={this.handleSubmit}>
+                {this.props.isLogged === 'true' && <form onSubmit={this.handleSubmit}>
                     <div>
                         <input className='input_field_comments' placeholder="Enter Comment"
                             type="text" value={this.state.comment} onChange={this.handleCommentChange}
@@ -123,7 +121,7 @@ class Comment extends Component {
                     <div className='comment_card' key={key}>
                         <div className='comment_card_clear'>
                             <div className='comment'>{entry.comment}</div>
-                            {this.state.admin === 'true' && <button className='comment_delete' onClick={() => this.deleteComment(entry)}><span role="img" aria-label="close">❌</span></button>}
+                            {this.props.isAdmin === 'true' && <button className='comment_delete' onClick={() => this.deleteComment(entry)}><span role="img" aria-label="close">❌</span></button>}
                             <div className='comment_author'>{entry.author}</div>
                         </div>
                     </div>

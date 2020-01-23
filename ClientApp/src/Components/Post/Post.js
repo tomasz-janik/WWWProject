@@ -14,7 +14,7 @@ class Post extends Component {
                 <div>{this.props.data.description}</div>
                 <img className='post_image' src={this.props.data.image} alt={this.props.data.description} />
                 <div className='divider'></div>
-                <Comment id={this.props.data.id} />
+                <Comment id={this.props.data.id} isLogged={this.props.isLogged} isAdmin={this.props.isAdmin} />
             </Card>
         );
     }
